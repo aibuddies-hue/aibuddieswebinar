@@ -2,16 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>AI Creator Summit — FREE | AI Buddies</title>
   <meta name="description" content="In 3 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. 100% Free.">
-  
-  <!-- Modern Fonts -->
+  <meta name="theme-color" content="#0072ff">
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Social share preview (WhatsApp / Facebook / Instagram DM / X)
+       NOTE: replace the two og:image / twitter:image paths with the full
+       absolute URL (https://yourdomain.com/assets/og-image.jpg) once the
+       domain is live — some scrapers will not resolve a relative path. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Buddies">
+  <meta property="og:title" content="AI Creator Summit — FREE | AI Buddies">
+  <meta property="og:description" content="In 3 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. 100% Free.">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Creator Summit — FREE | AI Buddies">
+  <meta name="twitter:description" content="In 3 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. 100% Free.">
+  <meta name="twitter:image" content="assets/og-image.jpg">
+
+  <!-- Fonts: only the weights the stylesheet actually uses -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="assets/ai_video_thumbnail.webp" fetchpriority="high">
 </head>
 <body class="light-theme">
 
@@ -178,7 +201,7 @@
             
             <!-- Sleek interactive wave player -->
             <div class="waveform-visual-wrapper">
-              <img src="assets/ai_voice_waveform.png" alt="AI Phone Call Waveform" class="waveform-img" loading="lazy">
+              <img src="assets/ai_voice_waveform.webp" alt="AI Phone Call Waveform" class="waveform-img" loading="lazy" decoding="async" width="1024" height="1024">
               <div class="waveform-play-overlay" onclick="toggleWaveformSimulation()">
                 <div class="play-icon-shape" id="waveform-play-btn"></div>
               </div>
@@ -494,7 +517,7 @@
   <section class="host-section" id="meet-host">
     <div class="container host-container">
       <div class="host-image-wrapper">
-        <img src="assets/Rudra.png" alt="Rudra Sahu Portrait" class="host-img" loading="lazy">
+        <img src="assets/Rudra.webp" alt="Rudra Sahu Portrait" class="host-img" loading="lazy" decoding="async" width="900" height="972">
       </div>
       
       <div class="host-info">
@@ -542,28 +565,28 @@
       
       <div class="proof-gallery">
         <div class="proof-item proof-item-with-css-border proof-item-clipped">
-          <img src="assets/proof_sales_1.png?v=2" alt="Sales proof 1" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_sales_1.webp" alt="Sales proof 1" class="proof-item-img" loading="lazy" decoding="async" width="898" height="1022">
         </div>
         <div class="proof-item proof-item-with-css-border proof-item-clipped">
-          <img src="assets/proof_sales_2.png?v=2" alt="Sales proof 2" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_sales_2.webp" alt="Sales proof 2" class="proof-item-img" loading="lazy" decoding="async" width="900" height="1013">
         </div>
         <div class="proof-item proof-item-with-css-border proof-item-clipped">
-          <img src="assets/proof_sales_3.png?v=2" alt="Sales proof 3" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_sales_3.webp" alt="Sales proof 3" class="proof-item-img" loading="lazy" decoding="async" width="882" height="998">
         </div>
         <div class="proof-item proof-item-with-css-border proof-item-clipped">
-          <img src="assets/proof_sales_4.png?v=2" alt="Sales proof 4" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_sales_4.webp" alt="Sales proof 4" class="proof-item-img" loading="lazy" decoding="async" width="900" height="980">
         </div>
         <div class="proof-item proof-item-with-css-border">
-          <img src="assets/proof_voice_agent_rufa.png?v=2" alt="Rufa Beauty Voice Agent call log" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_voice_agent_rufa.webp" alt="Rufa Beauty Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="485">
         </div>
         <div class="proof-item proof-item-with-css-border">
-          <img src="assets/proof_voice_agent_webinar.png?v=2" alt="Webinar confirmation Voice Agent call log" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_voice_agent_webinar.webp" alt="Webinar confirmation Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="487">
         </div>
         <div class="proof-item proof-item-with-css-border">
-          <img src="assets/proof_n8n_canvas_1.png?v=2" alt="n8n content engine canvas" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_n8n_canvas_1.webp" alt="n8n content engine canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="460">
         </div>
         <div class="proof-item proof-item-with-css-border">
-          <img src="assets/proof_n8n_canvas_2.png?v=2" alt="n8n WhatsApp reminder sequence canvas" class="proof-item-img" loading="lazy">
+          <img src="assets/proof_n8n_canvas_2.webp" alt="n8n WhatsApp reminder sequence canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="461">
         </div>
       </div>
     </div>
