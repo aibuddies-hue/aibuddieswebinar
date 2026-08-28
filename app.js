@@ -36,6 +36,18 @@ const VSL_VIDEO_SRC = "https://youtu.be/qS9Ds9DQTR4";
  */
 const SUMMIT_DATE = new Date("2026-09-06T11:00:00+05:30");
 
+/**
+ * Both labels are derived from SUMMIT_DATE rather than typed out, so the
+ * countdown, the stored lead record and the WhatsApp confirmation can
+ * never disagree about the date again.
+ */
+const SUMMIT_DATE_FULL = SUMMIT_DATE.toLocaleDateString("en-IN", {
+  weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata"
+});
+const SUMMIT_DATE_SHORT = SUMMIT_DATE.toLocaleDateString("en-IN", {
+  weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata"
+});
+
 /* ==========================================
    2. UTILITIES
    ========================================== */
@@ -520,7 +532,7 @@ function handleRegistration(event) {
     phone: "+91" + phone,
     email: email,
     segment: segment,
-    summitDate: "Sunday 16 August 2026",
+    summitDate: SUMMIT_DATE_FULL,
     timestamp: new Date().toISOString()
   };
 
@@ -531,7 +543,7 @@ function handleRegistration(event) {
   localStorage.setItem("has_registered", "true");
 
   // Format pre-filled WhatsApp text for instant registration confirmation via AiSensy
-  const messageText = `Hi Rudra! I have completed my registration for the AI Creator Summit on Sunday, 16 August.\n\n*My Details:*\n- Name: ${name}\n- Email: ${email}\n- Segment: ${segment}\n\nLooking forward to the live builds!`;
+  const messageText = `Hi Rudra! I have completed my registration for the AI Creator Summit on ${SUMMIT_DATE_SHORT}.\n\n*My Details:*\n- Name: ${name}\n- Email: ${email}\n- Segment: ${segment}\n\nLooking forward to the live builds!`;
   const encText = encodeURIComponent(messageText);
   const whatsappUrl = `https://wa.me/919516194751?text=${encText}`;
 
