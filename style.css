@@ -3439,3 +3439,530 @@ body {
 .proof-item-with-css-border:hover {
   border-color: var(--surface-border-gold);
 }
+
+
+/* ==================================================
+ * THANK-YOU / CONFIRMATION PAGE
+ * Reuses the landing page tokens, dark-section treatment
+ * and countdown so both pages read as one product.
+ * ================================================== */
+
+.ty-page {
+  background-attachment: fixed;
+}
+
+/* --------------------------------------------------
+ * Confirmation hero
+ * -------------------------------------------------- */
+.ty-hero {
+  padding: 50px 0 60px;
+  border-top: none;
+}
+
+.ty-hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ty-check {
+  width: 82px;
+  height: 82px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 198, 255, 0.12);
+  border: 1px solid rgba(127, 216, 255, 0.4);
+  margin-bottom: 20px;
+  color: #7fd8ff;
+}
+
+.ty-check-circle {
+  stroke: rgba(127, 216, 255, 0.45);
+  stroke-dasharray: 152;
+  stroke-dashoffset: 152;
+  animation: tyCircle 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.ty-check-mark {
+  stroke: #7fd8ff;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: tyMark 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+@keyframes tyCircle { to { stroke-dashoffset: 0; } }
+@keyframes tyMark   { to { stroke-dashoffset: 0; } }
+
+.ty-badge {
+  display: inline-block;
+  font-family: var(--font-title);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #7fd8ff;
+  background: rgba(0, 198, 255, 0.1);
+  border: 1px solid rgba(127, 216, 255, 0.35);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+}
+
+.ty-title {
+  font-family: var(--font-title);
+  font-size: 2.1rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  margin-bottom: 14px;
+  max-width: 760px;
+}
+
+.ty-subhead {
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #b8c6da;
+  max-width: 620px;
+  margin-bottom: 28px;
+}
+
+/* Session facts, in a glass card on the dark ground */
+.ty-session-card {
+  width: 100%;
+  max-width: 420px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+  padding: 6px 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  margin-bottom: 26px;
+}
+
+.ty-session-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.ty-session-row:last-child {
+  border-bottom: none;
+}
+
+.ty-k {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #8ea3bf;
+}
+
+.ty-v {
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-align: right;
+}
+
+.ty-hero .countdown {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  margin-bottom: 0;
+}
+
+.ty-hero .countdown-label { color: #ff8080; }
+.ty-hero .cd-num { color: #ffffff; }
+.ty-hero .cd-cap { color: #9fb2cc; }
+.ty-hero .cd-sep { color: #7fd8ff; opacity: 0.55; }
+
+/* --------------------------------------------------
+ * The three steps
+ * -------------------------------------------------- */
+.ty-steps-section {
+  padding: 50px 0;
+}
+
+.ty-step {
+  background: var(--surface-color);
+  border: 1px solid var(--surface-border);
+  border-radius: 14px;
+  padding: 24px 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Step 1 is the action that actually matters — give it the brand frame */
+.ty-step-primary {
+  border-color: var(--surface-border-gold);
+  box-shadow: var(--shadow-md), 0 0 0 4px rgba(0, 114, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.ty-step-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--gold-gradient);
+}
+
+.ty-step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.ty-step-num {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--gold-gradient);
+  box-shadow: 0 4px 12px rgba(0, 114, 255, 0.28);
+}
+
+.ty-step-head h2 {
+  font-size: 1.15rem;
+  margin-bottom: 5px;
+}
+
+.ty-step-why {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #4a5769;
+}
+
+.ty-group-box {
+  margin-top: 4px;
+}
+
+.ty-group-btn {
+  text-decoration: none;
+  max-width: 420px;
+  margin: 0 auto;
+  box-shadow: 0 8px 30px rgba(0, 168, 255, 0.4);
+}
+
+.ty-group-btn:hover {
+  box-shadow: 0 12px 40px rgba(0, 168, 255, 0.6);
+}
+
+/* Inert state while no group link is configured */
+.ty-group-btn.is-disabled {
+  background: #cbd5e1;
+  box-shadow: none;
+  cursor: not-allowed;
+  filter: none;
+}
+
+.ty-group-btn.is-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.ty-group-btn.is-disabled::after {
+  display: none;
+}
+
+.ty-group-pending {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255, 176, 32, 0.08);
+  border: 1px solid rgba(255, 176, 32, 0.3);
+}
+
+.ty-pending-dot {
+  flex-shrink: 0;
+  width: 7px;
+  height: 7px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+  animation: pulseDot 1.5s infinite;
+}
+
+.ty-group-pending p {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #7a5a12;
+}
+
+.ty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ty-secondary-action {
+  flex: 1 1 200px;
+  text-align: center;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--surface-border-gold);
+  background: rgba(0, 114, 255, 0.04);
+  color: var(--primary-gold);
+  font-family: var(--font-title);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ty-secondary-action:hover {
+  background: rgba(0, 114, 255, 0.1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 114, 255, 0.16);
+}
+
+.ty-prep-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.ty-prep-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #4a5769;
+}
+
+.ty-tick {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: var(--gold-gradient);
+}
+
+/* --------------------------------------------------
+ * What you walk away with
+ * -------------------------------------------------- */
+.ty-next-section {
+  padding: 55px 0;
+  background: rgba(255, 255, 255, 0.62);
+  border-top: 1px solid var(--surface-border);
+  border-bottom: 1px solid var(--surface-border);
+  text-align: center;
+}
+
+.ty-deliverables {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin: 28px 0 22px;
+}
+
+.ty-deliverable {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  background: var(--surface-color);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-sm);
+  font-family: var(--font-title);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.ty-deliverable:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.ty-d-icon {
+  font-size: 1.15rem;
+}
+
+.ty-note {
+  font-size: 0.85rem;
+  color: #4a5769;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------
+ * No-recording reminder
+ * -------------------------------------------------- */
+.ty-warning-section {
+  padding: 40px 0;
+}
+
+.ty-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.ty-warning-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.ty-warning h2 {
+  font-size: 1.15rem;
+  color: #ffffff;
+  margin-bottom: 7px;
+}
+
+.ty-warning p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #b8c6da;
+}
+
+/* --------------------------------------------------
+ * Help
+ * -------------------------------------------------- */
+.ty-help-section {
+  padding: 50px 0 60px;
+  text-align: center;
+}
+
+.ty-help-title {
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.ty-help-text {
+  font-size: 0.88rem;
+  color: #4a5769;
+  max-width: 480px;
+  margin: 0 auto 20px;
+  line-height: 1.55;
+}
+
+.ty-help-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 24px;
+  border-radius: 8px;
+  background: #25d366;
+  color: #ffffff;
+  font-family: var(--font-title);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.32);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+
+.ty-help-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.48);
+}
+
+.ty-back {
+  margin-top: 24px;
+  font-size: 0.82rem;
+}
+
+.ty-back a {
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ty-back a:hover {
+  color: var(--primary-gold);
+}
+
+/* --------------------------------------------------
+ * Desktop
+ * -------------------------------------------------- */
+@media (min-width: 768px) {
+  .ty-hero {
+    padding: 70px 0 80px;
+  }
+
+  .ty-title {
+    font-size: 3rem;
+  }
+
+  .ty-subhead {
+    font-size: 1.05rem;
+  }
+
+  .ty-step {
+    padding: 30px 28px;
+  }
+
+  .ty-step-head h2 {
+    font-size: 1.35rem;
+  }
+
+  .ty-deliverables {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .ty-warning h2 {
+    font-size: 1.35rem;
+  }
+}
+
+.ty-confirm-fallback {
+  margin-top: 14px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.ty-confirm-fallback a {
+  color: var(--primary-gold);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* The HTML hidden attribute is applied by the UA stylesheet, so any
+   component rule that sets display (e.g. .ty-group-pending) silently
+   overrides it and the element stays on screen. Make hidden authoritative. */
+[hidden] {
+  display: none !important;
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>You're Registered — AI Creator Summit | AI Buddies</title>
+  <meta name="description" content="Your seat for the AI Creator Summit is confirmed. Join the WhatsApp group to get your Zoom link, reminders and session updates.">
+  <meta name="theme-color" content="#0072ff">
+
+  <!-- A confirmation page should never be indexed or shared as a landing page -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add("js-reveal");</script>
+</head>
+<body class="light-theme ty-page">
+
+  <!-- CONFIRMATION HERO -->
+  <section class="ty-hero dark-section">
+    <div class="container ty-hero-container">
+
+      <div class="ty-check" aria-hidden="true">
+        <svg viewBox="0 0 52 52" width="46" height="46" focusable="false">
+          <circle class="ty-check-circle" cx="26" cy="26" r="24" fill="none" stroke-width="3"/>
+          <path class="ty-check-mark" fill="none" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" d="M14 27 l8 8 l16 -17"/>
+        </svg>
+      </div>
+
+      <div class="ty-badge">Seat confirmed</div>
+      <h1 class="ty-title">You're in<span id="ty-name"></span>. <span class="gold-gradient">Your seat is booked.</span></h1>
+      <p class="ty-subhead">
+        Now there are three small things to do before Sunday. The first one takes ten seconds and it is the one that matters most &mdash; everything about the session reaches you there.
+      </p>
+
+      <div class="ty-session-card">
+        <div class="ty-session-row"><span class="ty-k">Date</span><span class="ty-v" id="ty-date">Sunday, 6 September 2026</span></div>
+        <div class="ty-session-row"><span class="ty-k">Time</span><span class="ty-v">11:00 AM IST</span></div>
+        <div class="ty-session-row"><span class="ty-k">Duration</span><span class="ty-v">3+ hours, live</span></div>
+        <div class="ty-session-row"><span class="ty-k">Platform</span><span class="ty-v">Zoom</span></div>
+      </div>
+
+      <div class="countdown" id="countdown">
+        <span class="countdown-label">Session starts in</span>
+        <div class="countdown-units">
+          <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-cap">Days</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-cap">Hrs</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-cap">Min</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-cap">Sec</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STEP 1 — THE GROUP -->
+  <section class="ty-steps-section">
+    <div class="container">
+
+      <div class="ty-step ty-step-primary" data-reveal>
+        <div class="ty-step-head">
+          <span class="ty-step-num">1</span>
+          <div>
+            <h2>Join the WhatsApp group</h2>
+            <p class="ty-step-why">This is where your Zoom link, reminders and every session update will arrive. If you skip this step, you will miss the link.</p>
+          </div>
+        </div>
+
+        <div class="ty-group-box">
+          <a class="primary-btn ty-group-btn" id="group-join-btn" href="#" target="_blank" rel="noopener noreferrer">
+            <span class="btn-text">Join The WhatsApp Group</span>
+            <span class="btn-subtext">Zoom link &middot; Reminders &middot; Session updates</span>
+          </a>
+
+          <!-- Shown until the real group link is configured in thank-you.js -->
+          <div class="ty-group-pending" id="group-pending" hidden>
+            <span class="ty-pending-dot"></span>
+            <p>The group link goes live shortly. Keep this page open, or watch your WhatsApp &mdash; we will send it to the number you registered with.</p>
+          </div>
+
+          <!-- Fallback: the confirmation message opens automatically on submit,
+               but a blocked tab or a mis-tap should not cost a registration. -->
+          <p class="ty-confirm-fallback" id="confirm-fallback" hidden>
+            Confirmation message didn't open?
+            <a id="confirm-link" href="#" target="_blank" rel="noopener noreferrer">Send it on WhatsApp</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="ty-step" data-reveal>
+        <div class="ty-step-head">
+          <span class="ty-step-num">2</span>
+          <div>
+            <h2>Put it in your calendar</h2>
+            <p class="ty-step-why">There is no recording. The session runs once, live, and then it is gone.</p>
+          </div>
+        </div>
+        <div class="ty-actions">
+          <a class="ty-secondary-action" id="gcal-link" href="#" target="_blank" rel="noopener noreferrer">Add to Google Calendar</a>
+          <a class="ty-secondary-action" id="ics-link" href="#" download="ai-creator-summit.ics">Download .ics file</a>
+        </div>
+      </div>
+
+      <div class="ty-step" data-reveal>
+        <div class="ty-step-head">
+          <span class="ty-step-num">3</span>
+          <div>
+            <h2>Keep these ready for Sunday</h2>
+            <p class="ty-step-why">You will be building alongside, not watching. Turning up prepared is the difference between leaving with assets and leaving with notes.</p>
+          </div>
+        </div>
+        <ul class="ty-prep-list">
+          <li><span class="ty-tick">&#10003;</span> A laptop &mdash; a phone works, but a laptop is strongly recommended</li>
+          <li><span class="ty-tick">&#10003;</span> One product photo, or a short description of your business</li>
+          <li><span class="ty-tick">&#10003;</span> Three clean, uninterrupted hours</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHAT HAPPENS ON THE DAY -->
+  <section class="ty-next-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>WHAT YOU'LL WALK AWAY WITH</div>
+      <h2 class="section-title" data-reveal>Three hours later, these are yours.</h2>
+
+      <div class="ty-deliverables" data-reveal>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#128247;</span>Ad-ready creative</div>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#127916;</span>Cinematic AI ad video</div>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#129333;</span>Your own AI avatar</div>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#127925;</span>Original brand jingle</div>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#128222;</span>A working voice agent</div>
+        <div class="ty-deliverable"><span class="ty-d-icon">&#9881;&#65039;</span>A live n8n automation</div>
+      </div>
+
+      <p class="ty-note" data-reveal>
+        The prompt pack, n8n workflow files and voice agent scripts are sent on WhatsApp when the session ends.
+      </p>
+    </div>
+  </section>
+
+  <!-- NO RECORDING -->
+  <section class="ty-warning-section dark-section">
+    <div class="container">
+      <div class="ty-warning">
+        <span class="ty-warning-icon">&#9888;&#65039;</span>
+        <div>
+          <h2>One thing worth repeating</h2>
+          <p>There is no recording. If you are not on the call on <strong id="ty-date-2">Sunday, 6 September</strong> at 11:00 AM IST, you do not get this session. Block the time now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HELP -->
+  <section class="ty-help-section">
+    <div class="container">
+      <h2 class="ty-help-title">Something not working?</h2>
+      <p class="ty-help-text">If the group link does not open, or you did not get a confirmation, message us directly and we will sort it out.</p>
+      <a class="ty-help-btn" id="support-link"
+         href="https://wa.me/919516194751?text=Hi%20Rudra!%20I%20registered%20for%20the%20AI%20Creator%20Summit%20and%20need%20help%20with%20my%20registration."
+         target="_blank" rel="noopener noreferrer">Message WhatsApp Support</a>
+      <p class="ty-back"><a href="index.html">&larr; Back to the summit page</a></p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer-section">
+    <div class="container">
+      <p class="facebook-disclaimer">
+        This site is not a part of the Facebook/Meta website or Meta Platforms Inc. This site is NOT endorsed by Meta in any way. FACEBOOK is a trademark of Meta Platforms, Inc.
+      </p>
+      <p class="earnings-disclaimer">
+        Earnings Disclaimer: Market rates referenced on this page are industry averages. Nothing here is an income guarantee. Results depend on individual effort, skill, and market conditions.
+      </p>
+
+      <div class="footer-links">
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#terms">Terms of Service</a>
+        <a href="#contact">Contact Support</a>
+      </div>
+
+      <p class="copy-text">&copy; 2026 AI Buddies. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="thank-you.js"></script>
+</body>
+</html>

@@ -547,8 +547,13 @@ function handleRegistration(event) {
   const encText = encodeURIComponent(messageText);
   const whatsappUrl = `https://wa.me/919516194751?text=${encText}`;
 
-  // Redirect to WhatsApp confirmation link
-  window.location.href = whatsappUrl;
+  // Until a webhook exists, this WhatsApp message is the ONLY thing that
+  // actually delivers the lead, so it must keep firing. Opening it in a new
+  // tab from inside a click handler counts as a user gesture and is not
+  // treated as a popup, and the visitor still lands on the thank-you page.
+  // If a browser does block it, the thank-you page offers the same link.
+  window.open(whatsappUrl, "_blank", "noopener");
+  window.location.href = "thank-you.html";
 }
 
 /* ==========================================
