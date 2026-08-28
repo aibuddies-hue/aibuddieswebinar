@@ -77,6 +77,21 @@
         </div>
       </div>
       
+
+      <!-- Live countdown to the summit -->
+      <div class="countdown" id="countdown" data-reveal>
+        <span class="countdown-label">Registration closes in</span>
+        <div class="countdown-units">
+          <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-cap">Days</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-cap">Hrs</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-cap">Min</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-cap">Sec</span></div>
+        </div>
+      </div>
+
       <!-- Mobile Hero CTA & Info Block (strictly above-the-fold design) -->
       <div class="hero-cta-wrapper">
         <button class="primary-btn pulse-glow" onclick="openModal()">
@@ -188,7 +203,7 @@
   </section>
 
   <!-- SECTION 4 — THE HERO MOMENT -->
-  <section class="hero-moment-section" id="hero-moment">
+  <section class="hero-moment-section dark-section" id="hero-moment">
     <div class="container">
       <div class="section-tag gold" data-reveal>THE HERO MOMENT</div>
       <h2 class="section-title" data-reveal>Midway through the session,<br><span class="gold-gradient">an AI will call your phone.</span></h2>
@@ -232,6 +247,158 @@
       </div>
     </div>
   </section>
+
+  <!-- SECTION 13 — PROOF STRIP -->
+  <section class="proof-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>TRANSPARENCY</div>
+      <h2 class="section-title" data-reveal>These aren't course screenshots.<br><span class="gold-gradient">They're live client accounts.</span></h2>
+      
+      <div class="proof-gallery">
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_1.webp" alt="Sales proof 1" class="proof-item-img" loading="lazy" decoding="async" width="898" height="1022">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_2.webp" alt="Sales proof 2" class="proof-item-img" loading="lazy" decoding="async" width="900" height="1013">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_3.webp" alt="Sales proof 3" class="proof-item-img" loading="lazy" decoding="async" width="882" height="998">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_4.webp" alt="Sales proof 4" class="proof-item-img" loading="lazy" decoding="async" width="900" height="980">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_voice_agent_rufa.webp" alt="Rufa Beauty Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="485">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_voice_agent_webinar.webp" alt="Webinar confirmation Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="487">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_n8n_canvas_1.webp" alt="n8n content engine canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="460">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_n8n_canvas_2.webp" alt="n8n WhatsApp reminder sequence canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="461">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 14 — TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-tag gold" data-reveal>TESTIMONIALS</div>
+      <h2 class="section-title" data-reveal>Feedback from clients and past attendees.</h2>
+      
+      <div class="testimonials-tabs" data-reveal>
+        <button class="tab-btn active" id="tab-emotion-btn" onclick="switchTestimonials('emotion')">Attendee Feedback</button>
+        <button class="tab-btn" id="tab-results-btn" onclick="switchTestimonials('results')">Results & Numbers</button>
+      </div>
+
+      <!-- Attendee Feedback Tab -->
+      <div class="testimonials-wrapper active-tab" id="tab-emotion">
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">SK</div>
+              <div>
+                <h3>Suhail Khan</h3>
+                <p>Freelancer &bull; Bhopal</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"Before the session, I was just reading prompts off Twitter. Honestly, watching Rudra hook up n8n and watch a live call happen in 20 minutes was mindblowing. That moment made me realize this is actually doable. Built my first automation the next day."</p>
+              <span class="time-stamp">11:42 PM ✓✓</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">AG</div>
+              <div>
+                <h3>Anjali Gupta</h3>
+                <p>D2C Founder &bull; Indore</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"I was paying an agency 20k a month for basic ad creatives. In the summit, we literally made a better version in 5 mins using the product photo script. Moving designer tasks in house now."</p>
+              <span class="time-stamp">09:15 AM ✓✓</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">RV</div>
+              <div>
+                <h3>Rohan Verma</h3>
+                <p>Agency Owner &bull; Mumbai</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"Zero slides concept is real. Usually webinars are pitch-heavy lectures, but here we actually sat and coded workflows alongside. Most practical 3 hours I spent this year."</p>
+              <span class="time-stamp">04:30 PM ✓✓</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results Tab -->
+      <div class="testimonials-wrapper" id="tab-results">
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">DK</div>
+              <div>
+                <h3>Devendra Kharat</h3>
+                <p>Solo Agency &bull; Pune</p>
+              </div>
+            </div>
+            <div class="result-badge">Landed ₹35k Client</div>
+            <p class="quote">"Using the agency package pitch taught in Act 3, I approached a local e-commerce store with an AI voice agent proposal. Replaced their manual telecaller within a week. Sticking to this service now."</p>
+          </div>
+
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">PS</div>
+              <div>
+                <h3>Pooja Sharma</h3>
+                <p>Creator &bull; Jaipur</p>
+              </div>
+            </div>
+            <div class="result-badge">Saved 12+ Hours/Week</div>
+            <p class="quote">"My content production timeline crashed from 15 hours a week to under 3 hours. Using my AI avatar to deliver simple script drafts saves me massive studio/recording hours."</p>
+          </div>
+
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">AK</div>
+              <div>
+                <h3>Amit Kumar</h3>
+                <p>Business Owner &bull; Delhi</p>
+              </div>
+            </div>
+            <div class="result-badge">Meta ROI Up by 38%</div>
+            <p class="quote">"We scaled our D2C spend by testing 50+ AI variations generated using the midjourney assets layout we built. CAC went down by 30% because ad fatigue is no longer a blocker."</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">200 seats &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
 
   <!-- SECTION 5 — WHAT YOU WALK AWAY WITH -->
   <section class="walk-away-section">
@@ -610,157 +777,6 @@
       </button>
     </div>
   </div>
-  <!-- SECTION 13 — PROOF STRIP -->
-  <section class="proof-section">
-    <div class="container">
-      <div class="section-tag" data-reveal>TRANSPARENCY</div>
-      <h2 class="section-title" data-reveal>These aren't course screenshots.<br><span class="gold-gradient">They're live client accounts.</span></h2>
-      
-      <div class="proof-gallery">
-        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
-          <img src="assets/proof_sales_1.webp" alt="Sales proof 1" class="proof-item-img" loading="lazy" decoding="async" width="898" height="1022">
-        </div>
-        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
-          <img src="assets/proof_sales_2.webp" alt="Sales proof 2" class="proof-item-img" loading="lazy" decoding="async" width="900" height="1013">
-        </div>
-        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
-          <img src="assets/proof_sales_3.webp" alt="Sales proof 3" class="proof-item-img" loading="lazy" decoding="async" width="882" height="998">
-        </div>
-        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
-          <img src="assets/proof_sales_4.webp" alt="Sales proof 4" class="proof-item-img" loading="lazy" decoding="async" width="900" height="980">
-        </div>
-        <div class="proof-item proof-item-with-css-border" data-reveal>
-          <img src="assets/proof_voice_agent_rufa.webp" alt="Rufa Beauty Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="485">
-        </div>
-        <div class="proof-item proof-item-with-css-border" data-reveal>
-          <img src="assets/proof_voice_agent_webinar.webp" alt="Webinar confirmation Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="487">
-        </div>
-        <div class="proof-item proof-item-with-css-border" data-reveal>
-          <img src="assets/proof_n8n_canvas_1.webp" alt="n8n content engine canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="460">
-        </div>
-        <div class="proof-item proof-item-with-css-border" data-reveal>
-          <img src="assets/proof_n8n_canvas_2.webp" alt="n8n WhatsApp reminder sequence canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="461">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 14 — TESTIMONIALS -->
-  <section class="testimonials-section">
-    <div class="container">
-      <div class="section-tag gold" data-reveal>TESTIMONIALS</div>
-      <h2 class="section-title" data-reveal>Feedback from clients and past attendees.</h2>
-      
-      <div class="testimonials-tabs" data-reveal>
-        <button class="tab-btn active" id="tab-emotion-btn" onclick="switchTestimonials('emotion')">Attendee Feedback</button>
-        <button class="tab-btn" id="tab-results-btn" onclick="switchTestimonials('results')">Results & Numbers</button>
-      </div>
-
-      <!-- Attendee Feedback Tab -->
-      <div class="testimonials-wrapper active-tab" id="tab-emotion">
-        <div class="testimonials-grid">
-          
-          <div class="testimonial-card bubble" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder">SK</div>
-              <div>
-                <h3>Suhail Khan</h3>
-                <p>Freelancer &bull; Bhopal</p>
-              </div>
-            </div>
-            <div class="whatsapp-bubble-sim">
-              <p class="msg">"Before the session, I was just reading prompts off Twitter. Honestly, watching Rudra hook up n8n and watch a live call happen in 20 minutes was mindblowing. That moment made me realize this is actually doable. Built my first automation the next day."</p>
-              <span class="time-stamp">11:42 PM ✓✓</span>
-            </div>
-          </div>
-
-          <div class="testimonial-card bubble" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder">AG</div>
-              <div>
-                <h3>Anjali Gupta</h3>
-                <p>D2C Founder &bull; Indore</p>
-              </div>
-            </div>
-            <div class="whatsapp-bubble-sim">
-              <p class="msg">"I was paying an agency 20k a month for basic ad creatives. In the summit, we literally made a better version in 5 mins using the product photo script. Moving designer tasks in house now."</p>
-              <span class="time-stamp">09:15 AM ✓✓</span>
-            </div>
-          </div>
-
-          <div class="testimonial-card bubble" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder">RV</div>
-              <div>
-                <h3>Rohan Verma</h3>
-                <p>Agency Owner &bull; Mumbai</p>
-              </div>
-            </div>
-            <div class="whatsapp-bubble-sim">
-              <p class="msg">"Zero slides concept is real. Usually webinars are pitch-heavy lectures, but here we actually sat and coded workflows alongside. Most practical 3 hours I spent this year."</p>
-              <span class="time-stamp">04:30 PM ✓✓</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- Results Tab -->
-      <div class="testimonials-wrapper" id="tab-results">
-        <div class="testimonials-grid">
-          
-          <div class="testimonial-card results" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder bg-gold">DK</div>
-              <div>
-                <h3>Devendra Kharat</h3>
-                <p>Solo Agency &bull; Pune</p>
-              </div>
-            </div>
-            <div class="result-badge">Landed ₹35k Client</div>
-            <p class="quote">"Using the agency package pitch taught in Act 3, I approached a local e-commerce store with an AI voice agent proposal. Replaced their manual telecaller within a week. Sticking to this service now."</p>
-          </div>
-
-          <div class="testimonial-card results" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder bg-gold">PS</div>
-              <div>
-                <h3>Pooja Sharma</h3>
-                <p>Creator &bull; Jaipur</p>
-              </div>
-            </div>
-            <div class="result-badge">Saved 12+ Hours/Week</div>
-            <p class="quote">"My content production timeline crashed from 15 hours a week to under 3 hours. Using my AI avatar to deliver simple script drafts saves me massive studio/recording hours."</p>
-          </div>
-
-          <div class="testimonial-card results" data-reveal>
-            <div class="testimonial-header">
-              <div class="user-avatar-placeholder bg-gold">AK</div>
-              <div>
-                <h3>Amit Kumar</h3>
-                <p>Business Owner &bull; Delhi</p>
-              </div>
-            </div>
-            <div class="result-badge">Meta ROI Up by 38%</div>
-            <p class="quote">"We scaled our D2C spend by testing 50+ AI variations generated using the midjourney assets layout we built. CAC went down by 30% because ad fatigue is no longer a blocker."</p>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- Inline conversion point -->
-  <div class="section-cta" data-reveal>
-    <div class="container">
-      <button class="primary-btn section-cta-btn" onclick="openModal()">
-        <span class="btn-text">Reserve My Free Seat</span>
-        <span class="btn-subtext">200 seats &middot; No recording &middot; Confirmation in 30s</span>
-      </button>
-    </div>
-  </div>
   <!-- SECTION 15 — WHAT YOU GET AFTER -->
   <section class="bonuses-section">
     <div class="container">
@@ -806,7 +822,7 @@
   </section>
 
   <!-- SECTION 16 — SCARCITY BANNER -->
-  <section class="scarcity-banner">
+  <section class="scarcity-banner dark-section">
     <div class="container">
       <div class="scarcity-content" data-reveal>
         <div class="scarcity-left">
@@ -814,6 +830,18 @@
             🚨 ONLY <span id="seats-left-banner">39</span> SEATS LEFT
           </div>
           <p>Once 200 registrations are complete, the Zoom batch locks. There is no recording.</p>
+          <div class="countdown compact" id="countdown-scarcity">
+            <div class="countdown-units">
+              <div class="cd-unit"><span class="cd-num" id="cd2-days">--</span><span class="cd-cap">Days</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-hours">--</span><span class="cd-cap">Hrs</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-mins">--</span><span class="cd-cap">Min</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-secs">--</span><span class="cd-cap">Sec</span></div>
+            </div>
+          </div>
+
         </div>
         <button class="primary-btn pulse-glow" onclick="openModal()">
           Secure My Seat For Free
@@ -935,7 +963,7 @@
   </section>
 
   <!-- SECTION 18 — FINAL CLOSE -->
-  <section class="final-close-section">
+  <section class="final-close-section dark-section">
     <div class="container">
       <div class="price-box final-box" data-reveal>
         <h2 class="section-title" data-reveal>There's one thing left to do.</h2>
@@ -1087,6 +1115,23 @@
       <button class="sticky-cta-btn" onclick="openModal()">Reserve My Free Seat</button>
     </div>
   </div>
+
+
+  <!-- FLOATING: seats badge (desktop) + WhatsApp shortcut -->
+  <div class="floating-seats" id="floating-seats" aria-hidden="true">
+    <span class="fs-dot"></span>
+    <span class="fs-num" id="floating-seats-num">39</span>
+    <span class="fs-label">seats left</span>
+  </div>
+
+  <a class="whatsapp-fab" id="whatsapp-fab"
+     href="https://wa.me/919516194751?text=Hi%20Rudra!%20I%20have%20a%20question%20about%20the%20AI%20Creator%20Summit."
+     target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+      <path fill="currentColor" d="M20.52 3.45A11.9 11.9 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.15 1.6 5.96L.06 24l6.31-1.65a11.85 11.85 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.43-8.46zm-8.47 18.3h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88z"/>
+    </svg>
+  </a>
 
   <script src="app.js"></script>
 </body>

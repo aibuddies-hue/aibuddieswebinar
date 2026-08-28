@@ -28,7 +28,13 @@
  * If the source fails to load, the poster is replaced by a CTA instead of
  * a broken player, so the hero never becomes a dead end.
  */
-const VSL_VIDEO_SRC = "assets/VSL Video.mp4";
+const VSL_VIDEO_SRC = "https://youtu.be/qS9Ds9DQTR4";
+
+/**
+ * Summit start, in IST (+05:30). Drives the countdown timers.
+ * Change this one value when the date moves.
+ */
+const SUMMIT_DATE = new Date("2026-09-06T11:00:00+05:30");
 
 /* ==========================================
    2. UTILITIES
@@ -41,7 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initVslPlayer();
   initScrollReveal();
   initCountUps();
+  initCountdown();
   initStickyCta();
+  initFloatingUi();
   initAnnouncementBar();
   initFormSteps();
   initSeatsCounter();
@@ -212,6 +220,52 @@ function countUp(el) {
 }
 
 /* ==========================================
+   5b. COUNTDOWN
+   ========================================== */
+function initCountdown() {
+  const groups = [
+    { d: "#cd-days",  h: "#cd-hours",  m: "#cd-mins",  s: "#cd-secs",  root: "#countdown" },
+    { d: "#cd2-days", h: "#cd2-hours", m: "#cd2-mins", s: "#cd2-secs", root: "#countdown-scarcity" }
+  ].filter((g) => $(g.root));
+
+  if (!groups.length) return;
+
+  const pad = (n) => String(n).padStart(2, "0");
+
+  const tick = () => {
+    const remaining = SUMMIT_DATE.getTime() - Date.now();
+
+    // Past the start time the timer is meaningless — hide it rather than
+    // showing a frozen or negative clock.
+    if (remaining <= 0) {
+      groups.forEach((g) => $(g.root).classList.add("countdown-ended"));
+      clearInterval(timer);
+      return;
+    }
+
+    const totalSeconds = Math.floor(remaining / 1000);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const mins = Math.floor((totalSeconds % 3600) / 60);
+    const secs = totalSeconds % 60;
+
+    groups.forEach((g) => {
+      const set = (sel, val) => {
+        const el = $(sel);
+        if (el && el.textContent !== val) el.textContent = val;
+      };
+      set(g.d, pad(days));
+      set(g.h, pad(hours));
+      set(g.m, pad(mins));
+      set(g.s, pad(secs));
+    });
+  };
+
+  tick();
+  const timer = setInterval(tick, 1000);
+}
+
+/* ==========================================
    6. STICKY CTA + ANNOUNCEMENT BAR
    ========================================== */
 function initStickyCta() {
@@ -233,6 +287,36 @@ function initStickyCta() {
   new IntersectionObserver(([entry]) => {
     setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
   }, { threshold: 0 }).observe(heroCta);
+}
+
+/**
+ * Desktop seat badge and the WhatsApp shortcut both appear only after the
+ * visitor has committed to reading, so the first screen stays clean.
+ */
+function initFloatingUi() {
+  const seats = $("#floating-seats");
+  const fab = $("#whatsapp-fab");
+  if (!seats && !fab) return;
+
+  let ticking = false;
+  const update = () => {
+    const show = window.pageYOffset > 700;
+    if (seats) {
+      seats.classList.toggle("is-visible", show);
+      seats.setAttribute("aria-hidden", show ? "false" : "true");
+    }
+    if (fab) fab.classList.toggle("is-visible", show);
+    ticking = false;
+  };
+
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+
+  update();
 }
 
 function initAnnouncementBar() {
@@ -472,23 +556,47 @@ function initExitIntent() {
     if (e.clientY < 20) triggerExitIntent();
   });
 
-  // Mobile: a fast flick back up after reading a good part of the page.
-  let lastScrollTop = 0;
-  let readEnough = false;
+  // Mobile: a fast upward flick, which is how someone reaches for the back
+  // button. Distance alone is not enough — scrolling back up to re-read a
+  // paragraph is normal and must not be mistaken for leaving. A real flick
+  // fires many scroll events in quick succession, so upward travel is
+  // accumulated only while those events keep arriving; any pause or change
+  // of direction resets it.
+  let lastScrollTop = window.pageYOffset || 0;
+  let lastScrollTime = performance.now();
+  let upwardRun = 0;
+  let engaged = false;
 
   window.addEventListener("scroll", () => {
     const st = window.pageYOffset || document.documentElement.scrollTop;
+    const now = performance.now();
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const percent = scrollHeight > 0 ? (st / scrollHeight) * 100 : 0;
 
-    if (percent > 45) readEnough = true;
-    if (readEnough && st < lastScrollTop - 90) triggerExitIntent();
+    if (percent > 30) engaged = true;
+
+    const delta = lastScrollTop - st;
+    const gap = now - lastScrollTime;
+
+    if (delta > 0 && gap < 220) {
+      upwardRun += delta;          // still inside one continuous upward gesture
+    } else {
+      upwardRun = delta > 0 ? delta : 0;
+    }
+
+    if (engaged && upwardRun > 260) triggerExitIntent();
+
     lastScrollTop = st <= 0 ? 0 : st;
+    lastScrollTime = now;
   }, { passive: true });
 
-  // Mobile: switching tabs / apps is the closest signal to leaving.
+  // Leaving for another tab or app is the clearest signal of all. Time on
+  // page counts as engagement too — someone can read the hero for a while
+  // without scrolling far.
+  const openedAt = Date.now();
   document.addEventListener("visibilitychange", () => {
-    if (document.visibilityState === "hidden" && readEnough) triggerExitIntent();
+    if (document.visibilityState !== "hidden") return;
+    if (engaged || Date.now() - openedAt > 25000) triggerExitIntent();
   });
 
   // Last-resort timer. The old 45s version fired on engaged readers
@@ -563,14 +671,16 @@ function updateSeatsUI(animate) {
   const banner = document.getElementById("seats-left-banner");
   const exit = document.getElementById("seats-left-exit");
   const sticky = document.getElementById("sticky-seats");
+  const floating = document.getElementById("floating-seats-num");
 
   if (banner) banner.textContent = seatsLeft;
   if (sticky) sticky.textContent = seatsLeft;
+  if (floating) floating.textContent = seatsLeft;
   if (exit) exit.textContent = reservedCount;
 
   // A silent number change goes unnoticed; flash it so the drop registers.
   if (animate && !prefersReducedMotion) {
-    [banner, sticky].forEach((el) => {
+    [banner, sticky, floating].forEach((el) => {
       if (!el) return;
       el.classList.remove("seat-tick");
       void el.offsetWidth; // restart the animation

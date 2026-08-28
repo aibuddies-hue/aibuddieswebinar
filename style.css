@@ -2855,3 +2855,587 @@ h1, h2, h3, h4 {
     transform: none;
   }
 }
+
+
+/* ==================================================
+ * DEPTH PASS
+ * The page read washed out: background, cards and borders
+ * all sat within a few percent of each other. This raises
+ * contrast and introduces a light/dark section rhythm.
+ * ================================================== */
+
+:root {
+  --surface-border: rgba(15, 23, 42, 0.11);
+  --surface-border-gold: rgba(0, 114, 255, 0.28);
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04), 0 4px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 2px 4px rgba(15, 23, 42, 0.05), 0 12px 28px rgba(15, 23, 42, 0.09);
+  --shadow-lg: 0 4px 8px rgba(15, 23, 42, 0.06), 0 24px 56px rgba(15, 23, 42, 0.13);
+  --ink: #0b1220;
+  --ink-soft: #131c2e;
+}
+
+body {
+  background-color: #eaeef3;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(0, 198, 255, 0.10) 0%, rgba(0, 198, 255, 0) 45%),
+    radial-gradient(circle at 85% 12%, rgba(0, 114, 255, 0.08) 0%, rgba(0, 114, 255, 0) 40%),
+    linear-gradient(180deg, #f4f7fa 0%, #eaeef3 55%, #e4e9f0 100%);
+  background-attachment: fixed;
+}
+
+/* Cards now sit clearly above the page instead of blending into it */
+.stat-card,
+.problem-card,
+.deliverable-card,
+.agenda-card,
+.audience-card,
+.module-item,
+.bonus-row,
+.testimonial-card,
+.faq-item,
+.comparison-card,
+.price-box {
+  box-shadow: var(--shadow-sm);
+  border-color: var(--surface-border);
+}
+
+.stat-card:hover,
+.problem-card:hover,
+.deliverable-card:hover,
+.agenda-card:hover,
+.audience-card:hover,
+.bonus-row:hover,
+.testimonial-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.price-box {
+  box-shadow: var(--shadow-lg);
+}
+
+.text-muted,
+.stat-label,
+.problem-card p,
+.deliverable-card p,
+.agenda-card p,
+.audience-card p,
+.module-title-box p {
+  color: #4a5769;
+}
+
+/* Numbers are the proof on this page — let them carry weight */
+.stat-num {
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+/* --------------------------------------------------
+ * Dark punch sections
+ * Light -> dark -> light gives the page rhythm, and a CTA
+ * on a dark ground carries far more weight than on white.
+ * -------------------------------------------------- */
+.dark-section {
+  position: relative;
+  background: linear-gradient(160deg, var(--ink) 0%, var(--ink-soft) 55%, #0a1a33 100%);
+  border-top: 1px solid rgba(0, 198, 255, 0.22);
+  border-bottom: 1px solid rgba(0, 198, 255, 0.22);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Brand glow bleeding in from the edges */
+.dark-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(0, 198, 255, 0.20) 0%, rgba(0, 198, 255, 0) 45%),
+    radial-gradient(circle at 88% 82%, rgba(0, 114, 255, 0.22) 0%, rgba(0, 114, 255, 0) 50%);
+  pointer-events: none;
+}
+
+/* Fine grid, so the dark ground has texture instead of flat black */
+.dark-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 78%);
+  pointer-events: none;
+}
+
+.dark-section h2,
+.dark-section h3,
+.dark-section h4,
+.dark-section .section-title,
+.dark-section .price-value {
+  color: #ffffff;
+}
+
+.dark-section p,
+.dark-section li,
+.dark-section .price-label,
+.dark-section .final-desc,
+.dark-section .hero-moment-text p {
+  color: #b8c6da;
+}
+
+.dark-section strong {
+  color: #ffffff;
+}
+
+.dark-section .section-tag {
+  color: #7fd8ff;
+  border-color: rgba(127, 216, 255, 0.35);
+  background: rgba(0, 198, 255, 0.08);
+}
+
+.dark-section .highlight-red {
+  color: #ff7a7a;
+}
+
+.dark-section .date-rem {
+  color: #7fd8ff;
+}
+
+/* Boxes inside a dark section become translucent glass */
+.dark-section .price-box,
+.dark-section .final-box,
+.dark-section .waveform-container {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+}
+
+.dark-section .wave-prompt-box {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.dark-section .wave-prompt-box .label {
+  color: #7fd8ff;
+}
+
+.dark-section .wave-prompt-box .val,
+.dark-section .call-time {
+  color: #d3dced;
+}
+
+/* Outline button needs to read against dark, not against white */
+.dark-section .secondary-btn {
+  border-color: #7fd8ff;
+  color: #7fd8ff;
+  background: rgba(0, 198, 255, 0.06);
+}
+
+.dark-section .secondary-btn:hover {
+  background: rgba(0, 198, 255, 0.16);
+  color: #ffffff;
+  box-shadow: 0 0 26px rgba(0, 198, 255, 0.3);
+}
+
+.dark-section .seats-counter-badge {
+  background: rgba(255, 51, 51, 0.16);
+  border: 1px solid rgba(255, 122, 122, 0.45);
+  color: #ff9d9d;
+}
+
+/* The scarcity CTA is the loudest moment on the page */
+.dark-section .primary-btn {
+  box-shadow: 0 8px 34px rgba(0, 168, 255, 0.5);
+}
+
+.dark-section .primary-btn:hover {
+  box-shadow: 0 12px 44px rgba(0, 168, 255, 0.68);
+}
+
+.scarcity-banner.dark-section {
+  padding: 40px 0;
+}
+
+/* The trust bar sits directly under the hero and should feel joined to it */
+.trust-bar-section {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* Slightly stronger separation for the tinted sections */
+.walk-away-section,
+.agenda-section,
+.difference-section,
+.bonuses-section {
+  background: rgba(255, 255, 255, 0.62);
+}
+
+
+/* ==================================================
+ * COUNTDOWN + FLOATING UI
+ * ================================================== */
+
+.countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin: 0 auto 26px;
+  padding: 14px 18px;
+  max-width: 380px;
+  width: 100%;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--surface-border-gold);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.countdown-label {
+  font-family: var(--font-title);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #d62828;
+}
+
+.countdown-units {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.cd-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 46px;
+}
+
+.cd-num {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #0f172a;
+  font-variant-numeric: tabular-nums;
+  /* tabular figures alone still jitter on some faces at this size */
+  font-feature-settings: "tnum";
+}
+
+.cd-cap {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 5px;
+}
+
+.cd-sep {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--primary-gold);
+  opacity: 0.4;
+  padding-top: 1px;
+}
+
+.countdown.countdown-ended {
+  display: none;
+}
+
+/* Compact variant sitting inside the dark scarcity banner */
+.countdown.compact {
+  margin: 14px 0 0;
+  padding: 10px 14px;
+  max-width: 320px;
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.dark-section .countdown.compact .cd-num {
+  color: #ffffff;
+}
+
+.dark-section .countdown.compact .cd-cap {
+  color: #9fb2cc;
+}
+
+.dark-section .countdown.compact .cd-sep {
+  color: #7fd8ff;
+  opacity: 0.6;
+}
+
+/* --------------------------------------------------
+ * Floating seats badge (desktop only — mobile already
+ * carries the seat count in the sticky bar)
+ * -------------------------------------------------- */
+.floating-seats {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 8500;
+  display: none;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(11, 18, 32, 0.92);
+  border: 1px solid rgba(255, 122, 122, 0.4);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: var(--font-title);
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.floating-seats.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.fs-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #ff5a5a;
+  box-shadow: 0 0 10px rgba(255, 90, 90, 0.9);
+  animation: pulseDot 1.5s infinite;
+}
+
+.fs-num {
+  color: #ff9d9d;
+}
+
+.fs-label {
+  font-weight: 600;
+  color: #b8c6da;
+}
+
+@media (min-width: 768px) {
+  .floating-seats {
+    display: flex;
+  }
+}
+
+/* --------------------------------------------------
+ * WhatsApp shortcut — some visitors will never fill a
+ * form but will happily send a message
+ * -------------------------------------------------- */
+.whatsapp-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 92px; /* clears the mobile sticky CTA bar */
+  z-index: 8600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.25s ease;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.whatsapp-fab.is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.whatsapp-fab:hover {
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.65);
+  transform: scale(1.07);
+}
+
+/* Soft outward pulse so it is noticed without demanding attention */
+.whatsapp-fab::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.55);
+  animation: playRing 2.8s ease-out infinite;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .whatsapp-fab {
+    right: 24px;
+    bottom: 24px; /* no sticky bar on desktop */
+    width: 58px;
+    height: 58px;
+  }
+}
+
+
+/* ==================================================
+ * DARK HERO
+ * The whole page read washed out because it opened on a
+ * pale field. A dark hero gives the first screen contrast,
+ * makes the video thumbnail and the CTA the brightest
+ * things on it, and matches the subject matter.
+ * ================================================== */
+
+.announcement-bar {
+  background: rgba(9, 15, 26, 0.88);
+  border-bottom: 1px solid rgba(0, 198, 255, 0.22);
+}
+
+.bar-text {
+  color: #dbe5f2;
+}
+
+.live-indicator {
+  color: #ff8080;
+  background: rgba(255, 51, 51, 0.16);
+}
+
+.hero-section {
+  background: linear-gradient(170deg, #070d18 0%, var(--ink) 45%, #0a1a33 100%);
+  border-bottom: 1px solid rgba(0, 198, 255, 0.22);
+  padding: 40px 0 60px;
+}
+
+/* Stronger, more visible mesh than the light version carried */
+.hero-section::before {
+  background: radial-gradient(circle, rgba(0, 198, 255, 0.5) 0%, rgba(0, 198, 255, 0) 70%);
+}
+
+.hero-section::after {
+  background: radial-gradient(circle, rgba(0, 114, 255, 0.45) 0%, rgba(0, 114, 255, 0) 70%);
+}
+
+/* Same faint grid as the other dark sections, for continuity */
+.hero-section > .container::before {
+  content: "";
+  position: absolute;
+  inset: -40px -50vw;
+  z-index: -1;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse at 50% 30%, #000 15%, transparent 72%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, #000 15%, transparent 72%);
+  pointer-events: none;
+}
+
+.hero-title {
+  color: #ffffff;
+  text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+}
+
+.hero-tag {
+  color: #7fd8ff;
+}
+
+.hero-subhead {
+  color: #b8c6da;
+}
+
+.bullet-item .text {
+  color: #cbd7e8;
+}
+
+.bullet-item .text strong {
+  color: #ffffff;
+}
+
+/* Glass treatment for the blocks sitting on the dark hero */
+.logistics-strip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.log-item {
+  color: #cbd7e8;
+}
+
+.hero-section .countdown {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+.hero-section .countdown-label {
+  color: #ff8080;
+}
+
+.hero-section .cd-num {
+  color: #ffffff;
+}
+
+.hero-section .cd-cap {
+  color: #9fb2cc;
+}
+
+.hero-section .cd-sep {
+  color: #7fd8ff;
+  opacity: 0.55;
+}
+
+/* The hero CTA should be the brightest object on the first screen */
+.hero-cta-wrapper .primary-btn {
+  box-shadow: 0 8px 38px rgba(0, 168, 255, 0.55);
+}
+
+.hero-cta-wrapper .primary-btn:hover {
+  box-shadow: 0 14px 50px rgba(0, 168, 255, 0.75);
+}
+
+/* Video frame: the warm border clashed against the dark ground */
+.hero-vsl-container {
+  border-color: rgba(0, 198, 255, 0.35);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55), 0 0 60px rgba(0, 198, 255, 0.12);
+}
+
+.hero-vsl-container:hover {
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 198, 255, 0.28);
+}
+
+/* The trust bar now bridges a dark hero into the light body */
+.trust-bar-section {
+  background: linear-gradient(180deg, rgba(226, 233, 242, 0.9) 0%, rgba(255, 255, 255, 0.6) 100%);
+  border-top: none;
+}
+
+
+/* Proof cards carried a leftover warm outline that clashed with the
+   blue brand palette now running through the page. */
+.proof-item-with-css-border {
+  border-color: rgba(0, 114, 255, 0.22);
+  box-shadow: var(--shadow-sm);
+}
+
+.proof-item-with-css-border:hover {
+  border-color: var(--surface-border-gold);
+}
