@@ -127,6 +127,23 @@ const server = http.createServer((req, res) => {
   });
 });
 
+// A silent failure here is what a 503 looks like from outside, so say plainly
+// what happened and where it was serving from.
+server.on("error", (err) => {
+  console.error(`[server] failed to bind ${HOST}:${PORT} — ${err.code || err.message}`);
+  if (err.code === "EADDRINUSE") console.error("[server] that port is already taken");
+  if (err.code === "EACCES") console.error("[server] no permission to bind that port");
+  process.exit(1);
+});
+
 server.listen(PORT, HOST, () => {
-  console.log(`Static server listening on http://${HOST}:${PORT}`);
+  console.log(`[server] listening on http://${HOST}:${PORT}`);
+  console.log(`[server] serving ${ROOT}`);
+  console.log(`[server] PORT from env: ${process.env.PORT ? "yes" : "no (defaulted to 3000)"}`);
+  console.log(`[server] node ${process.version}`);
+  // If index.html is missing, the host is deploying the wrong directory —
+  // the single most useful thing to know when every request 404s or 503s.
+  if (!fs.existsSync(path.join(ROOT, "index.html"))) {
+    console.error("[server] WARNING: no index.html in the served directory");
+  }
 });
