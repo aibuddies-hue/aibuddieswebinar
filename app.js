@@ -290,15 +290,28 @@ function initStickyCta() {
     sticky.setAttribute("aria-hidden", visible ? "false" : "true");
   };
 
-  if (!("IntersectionObserver" in window)) {
-    setVisible(true);
-    return;
-  }
+  // Deliberately a scroll-position check rather than an IntersectionObserver.
+  // The hero CTA can start below the fold, and an observer only fires when
+  // the intersection state *changes* — so a visitor who lands and immediately
+  // flings past it goes from not-intersecting to not-intersecting and the bar
+  // never appears. Comparing against its offset is exact at every position.
+  let ticking = false;
+  const update = () => {
+    const passed = window.pageYOffset > heroCta.offsetTop + heroCta.offsetHeight;
+    setVisible(passed);
+    ticking = false;
+  };
 
-  // Show the sticky bar only once the hero's own CTA has scrolled away.
-  new IntersectionObserver(([entry]) => {
-    setVisible(!entry.isIntersecting && entry.boundingClientRect.top < 0);
-  }, { threshold: 0 }).observe(heroCta);
+  window.addEventListener("scroll", () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+
+  // Layout shifts (fonts, images) move the threshold, so recheck on resize.
+  window.addEventListener("resize", update, { passive: true });
+  update();
 }
 
 /**
@@ -654,14 +667,14 @@ if (exitModal) {
 /* ==========================================
    9. SEATS COUNTER
    ========================================== */
-let seatsLeft = 33;
+let seatsLeft = 93;
 
 function initSeatsCounter() {
   const storedSeats = localStorage.getItem("seats_left_count");
   if (storedSeats) {
     seatsLeft = parseInt(storedSeats, 10);
   } else {
-    seatsLeft = Math.floor(Math.random() * (39 - 27 + 1)) + 27;
+    seatsLeft = Math.floor(Math.random() * (97 - 88 + 1)) + 88;
     localStorage.setItem("seats_left_count", seatsLeft.toString());
   }
 
@@ -689,15 +702,19 @@ function updateSeatsUI(animate) {
   const exit = document.getElementById("seats-left-exit");
   const sticky = document.getElementById("sticky-seats");
   const floating = document.getElementById("floating-seats-num");
+  const bar = document.getElementById("bar-seats");
 
+  // Every seat figure on the page reads from the same counter, so the
+  // announcement bar can never contradict the banner or the sticky bar.
   if (banner) banner.textContent = seatsLeft;
   if (sticky) sticky.textContent = seatsLeft;
   if (floating) floating.textContent = seatsLeft;
+  if (bar) bar.textContent = seatsLeft;
   if (exit) exit.textContent = reservedCount;
 
   // A silent number change goes unnoticed; flash it so the drop registers.
   if (animate && !prefersReducedMotion) {
-    [banner, sticky, floating].forEach((el) => {
+    [banner, sticky, floating, bar].forEach((el) => {
       if (!el) return;
       el.classList.remove("seat-tick");
       void el.offsetWidth; // restart the animation
