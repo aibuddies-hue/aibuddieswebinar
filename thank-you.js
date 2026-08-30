@@ -18,7 +18,7 @@
  */
 const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/HOxDGMPW4yECCh4S5fBhXw";
 
-/** Summit start, in IST. Keep this in step with SUMMIT_DATE in app.js. */
+/** Summit start, in IST. Keep this in step with SUMMIT_DATE in landing.js. */
 const SUMMIT_DATE = new Date("2026-09-06T11:00:00+05:30");
 const SUMMIT_DURATION_HOURS = 3;
 
