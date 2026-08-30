@@ -3966,3 +3966,51 @@ body {
 [hidden] {
   display: none !important;
 }
+
+
+/* ==================================================
+ * IMAGE + SECTION FIXES
+ * ================================================== */
+
+/* Explicit width/height attributes were added to every image to stop layout
+   shift, but an element with `width: 100%` and no height rule then takes the
+   HTML height attribute as its used height. That forced the host portrait to
+   370x972 and cover-cropped it hard. Pin height so the attributes only ever
+   reserve space, never dictate the rendered box. */
+.host-img,
+.proof-item-img {
+  height: auto;
+}
+
+/* --------------------------------------------------
+ * Host portrait — sized to sit beside its own copy
+ * -------------------------------------------------- */
+.host-image-wrapper {
+  max-width: 300px;
+  box-shadow: var(--shadow-md);
+}
+
+.host-img {
+  aspect-ratio: 660 / 855;
+  object-fit: cover;
+  object-position: 50% 15%;
+}
+
+@media (min-width: 768px) {
+  .host-image-wrapper {
+    flex: 0 0 340px;
+    max-width: 340px;
+    align-self: center;
+  }
+}
+
+/* --------------------------------------------------
+ * Proof gallery
+ * The 1.13 upscale was meant to hide white margins on the
+ * source PNGs, but those were re-exported tight — so it now
+ * just chops content off all four edges (amounts and axis
+ * labels were being cut). Show the screenshots whole.
+ * -------------------------------------------------- */
+.proof-item-clipped .proof-item-img {
+  transform: none;
+}
