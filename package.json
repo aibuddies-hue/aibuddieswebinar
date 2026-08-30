@@ -1,8 +1,14 @@
 {
   "name": "ai-buddies-landing-page",
   "version": "1.0.0",
+  "private": true,
+  "description": "AI Creator Summit landing page (static site)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "start": "python3 -m http.server 8002",
-    "dev": "python3 -m http.server 8002"
+    "start": "node server.js",
+    "dev": "node server.js"
   }
 }
