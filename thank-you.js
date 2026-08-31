@@ -36,6 +36,7 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.addEventListener("DOMContentLoaded", () => {
+  trackLeadOnce();
   greetByName();
   renderDates();
   initGroupLink();
@@ -44,6 +45,44 @@ document.addEventListener("DOMContentLoaded", () => {
   initCountdown();
   initScrollReveal();
 });
+
+/* ==========================================
+   META PIXEL — LEAD CONVERSION
+   ========================================== */
+/**
+ * Fires the Lead event for a real registration only.
+ *
+ * The base pixel in <head> already reports PageView on every visit. Firing
+ * Lead unconditionally here would count anyone who opens this URL directly,
+ * and would count again on every refresh — both of which teach Meta's
+ * optimiser the wrong thing and inflate the reported conversion rate.
+ *
+ * So it fires only when a stored lead exists, and the lead's own timestamp
+ * is recorded so a refresh cannot double-count while a genuinely new
+ * registration still does.
+ */
+function trackLeadOnce() {
+  if (typeof fbq !== "function") return;
+
+  let lead = null;
+  try {
+    lead = JSON.parse(localStorage.getItem("creator_summit_lead") || "null");
+  } catch (err) {
+    return;
+  }
+  if (!lead || !lead.name) return;
+
+  const marker = lead.timestamp || lead.phone || "1";
+  try {
+    if (localStorage.getItem("fb_lead_tracked") === marker) return;
+    fbq("track", "Lead");
+    localStorage.setItem("fb_lead_tracked", marker);
+  } catch (err) {
+    // Storage unavailable (private mode): still report the conversion once
+    // for this page view rather than losing it entirely.
+    fbq("track", "Lead");
+  }
+}
 
 /* ==========================================
    PERSONALISATION

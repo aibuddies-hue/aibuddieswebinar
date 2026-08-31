@@ -4014,3 +4014,11 @@ body {
 .proof-item-clipped .proof-item-img {
   transform: none;
 }
+
+/* Seven chips in a three-column grid leaves the last one alone on its row;
+   centring it reads as intentional rather than as a layout accident. */
+@media (min-width: 768px) {
+  .ty-deliverable:nth-child(7):last-child {
+    grid-column: 2;
+  }
+}
