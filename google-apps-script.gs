@@ -17,7 +17,7 @@
  *    unverified — that is normal for your own script; choose Advanced →
  *    Go to <project>).
  * 5. Copy the Web app URL. It ends in /exec.
- * 6. Paste it into LEAD_WEBHOOK_URL at the top of landing.js.
+ * 6. Paste it into LEAD_WEBHOOK_URL at the top of lead-capture.js.
  *
  * After ANY later edit to this file you must Deploy → Manage deployments
  * → edit → Version: New version, or the live URL keeps running the old code.
