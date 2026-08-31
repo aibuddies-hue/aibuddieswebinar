@@ -6,7 +6,10 @@
  *
  * 1. Open the Google Sheet you want the leads in.
  * 2. Extensions → Apps Script. Delete whatever is in the editor and
- *    paste this whole file in. Save.
+ *    paste this whole file in. SAVE IT — Apps Script deploys the saved
+ *    version, so deploying with unsaved changes ships the old code.
+ *    (If you instead made a standalone script project, that works too:
+ *    set SHEET_ID below to the Sheet's id.)
  * 3. Deploy → New deployment → gear icon → Web app.
  *      Description:  lead capture
  *      Execute as:   Me
@@ -23,6 +26,15 @@
  * → edit → Version: New version, or the live URL keeps running the old code.
  * ─────────────────────────────────────────────────────────────
  */
+
+/**
+ * Leave empty if this script was created from inside the Sheet
+ * (Extensions -> Apps Script). If it is a standalone script project, paste
+ * the Sheet's id here — it is the long part of the Sheet URL between /d/
+ * and /edit:
+ *   https://docs.google.com/spreadsheets/d/THIS_PART_HERE/edit
+ */
+var SHEET_ID = "";
 
 var SHEET_NAME = "Leads";
 
@@ -101,7 +113,18 @@ function doGet() {
 }
 
 function getSheet_() {
-  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  // openById works from a standalone script too; getActiveSpreadsheet only
+  // works when the script is bound to the Sheet.
+  var ss = SHEET_ID
+    ? SpreadsheetApp.openById(SHEET_ID)
+    : SpreadsheetApp.getActiveSpreadsheet();
+
+  if (!ss) {
+    throw new Error(
+      "No spreadsheet. This is a standalone script, so set SHEET_ID at the top."
+    );
+  }
+
   var sheet = ss.getSheetByName(SHEET_NAME);
 
   if (!sheet) {
