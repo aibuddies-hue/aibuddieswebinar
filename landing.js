@@ -712,6 +712,10 @@ function updateSeatsUI(animate) {
   if (bar) bar.textContent = seatsLeft;
   if (exit) exit.textContent = reservedCount;
 
+  // The CTA button subtexts carry the same figure. There are six of them, so
+  // they are matched by class rather than given six ids.
+  $$(".seats-count").forEach((el) => { el.textContent = seatsLeft; });
+
   // A silent number change goes unnoticed; flash it so the drop registers.
   if (animate && !prefersReducedMotion) {
     [banner, sticky, floating, bar].forEach((el) => {
