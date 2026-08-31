@@ -36,6 +36,8 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Anything the landing page could not deliver gets another attempt here.
+  flushLeadQueue();
   trackLeadOnce();
   greetByName();
   renderDates();
