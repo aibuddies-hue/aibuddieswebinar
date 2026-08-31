@@ -56,6 +56,8 @@ const $ = (sel, root = document) => root.querySelector(sel);
 const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
 document.addEventListener("DOMContentLoaded", () => {
+  captureAttribution();
+  flushLeadQueue();
   initVslPlayer();
   initScrollReveal();
   initCountUps();
@@ -539,19 +541,21 @@ function handleRegistration(event) {
     submitBtn.disabled = true;
   }
 
-  // Prepare registration data (e.g. for potential n8n webhook)
-  const leadData = {
+  const leadData = Object.assign({
+    id: newLeadId(),
     name: name,
     phone: "+91" + phone,
     email: email,
     segment: segment,
     summitDate: SUMMIT_DATE_FULL,
     timestamp: new Date().toISOString()
-  };
+  }, readAttribution());
 
-  console.log("Saving lead to CRM...", leadData);
+  // Written down before anything is sent, so a failed request or a closed
+  // tab cannot lose the registration — it goes out on the next page load.
+  queueLead(leadData);
+  flushLeadQueue();
 
-  // Store in localStorage to verify lead capture state
   localStorage.setItem("creator_summit_lead", JSON.stringify(leadData));
   localStorage.setItem("has_registered", "true");
 
