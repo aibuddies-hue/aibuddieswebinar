@@ -667,21 +667,42 @@ if (exitModal) {
 /* ==========================================
    9. SEATS COUNTER
    ========================================== */
-let seatsLeft = 93;
+/**
+ * Seat count. Change SEATS_MIN / SEATS_MAX to move the number the page
+ * shows — the stored range is saved alongside the count, so anyone still
+ * carrying a value from an older range gets a fresh one instead of being
+ * stuck on it. Without that, a returning visitor keeps whatever their
+ * browser saved months ago and sees a number nobody else does.
+ */
+const SEATS_MIN = 88;
+const SEATS_MAX = 97;
+const SEATS_FLOOR = 4; // never tick below this, so it cannot reach zero
+
+let seatsLeft = SEATS_MAX;
 
 function initSeatsCounter() {
-  const storedSeats = localStorage.getItem("seats_left_count");
-  if (storedSeats) {
-    seatsLeft = parseInt(storedSeats, 10);
+  const storedRange = localStorage.getItem("seats_range");
+  const storedSeats = parseInt(localStorage.getItem("seats_left_count"), 10);
+  const currentRange = `${SEATS_MIN}-${SEATS_MAX}`;
+
+  const usable =
+    storedRange === currentRange &&
+    Number.isFinite(storedSeats) &&
+    storedSeats <= SEATS_MAX &&
+    storedSeats >= SEATS_FLOOR;
+
+  if (usable) {
+    seatsLeft = storedSeats;
   } else {
-    seatsLeft = Math.floor(Math.random() * (97 - 88 + 1)) + 88;
+    seatsLeft = Math.floor(Math.random() * (SEATS_MAX - SEATS_MIN + 1)) + SEATS_MIN;
     localStorage.setItem("seats_left_count", seatsLeft.toString());
+    localStorage.setItem("seats_range", currentRange);
   }
 
   updateSeatsUI(false);
 
   const tickCounter = () => {
-    if (seatsLeft <= 4) return;
+    if (seatsLeft <= SEATS_FLOOR) return;
 
     if (Math.random() < 0.15) {
       seatsLeft -= 1;
