@@ -21,28 +21,64 @@ const ATTRIBUTION_KEY = "lead_attribution";
 const MAX_DELIVERY_ATTEMPTS = 5;
 
 /**
- * Records where the visitor came from, once, on their first landing.
+ * Bumped whenever a new field is added below, so a visitor who was already
+ * recorded under an older shape still gets the new columns filled in.
+ */
+const ATTRIBUTION_VERSION = 2;
+
+/**
+ * Records where the visitor came from, on their first landing.
  * Captured on arrival rather than at submit because a visitor may open
  * the page from an ad, wander off, and come back without the parameters.
+ *
+ * First touch wins: anything already recorded is kept, and only fields that
+ * were never collected before are filled in. That way the ad that actually
+ * brought them in stays credited even if they return through a direct visit.
  */
 function captureAttribution() {
   try {
-    if (localStorage.getItem(ATTRIBUTION_KEY)) return;
-
     const params = new URLSearchParams(window.location.search);
-    const attribution = {
+    const fresh = {
+      v: ATTRIBUTION_VERSION,
       utm_source: params.get("utm_source") || "",
       utm_medium: params.get("utm_medium") || "",
       utm_campaign: params.get("utm_campaign") || "",
       utm_content: params.get("utm_content") || "",
       utm_term: params.get("utm_term") || "",
+      // Click ids. Meta and Google use these to match a lead back to the exact
+      // click, which is what makes offline conversion uploads work.
+      fbclid: params.get("fbclid") || "",
+      gclid: params.get("gclid") || "",
+      device: deviceType(),
       referrer: document.referrer || "",
       page: window.location.href
     };
-    localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(attribution));
+
+    let stored = null;
+    try {
+      stored = JSON.parse(localStorage.getItem(ATTRIBUTION_KEY) || "null");
+    } catch (err) {
+      stored = null;
+    }
+
+    const record = (stored && typeof stored === "object")
+      ? Object.assign({}, fresh, stored, { v: ATTRIBUTION_VERSION })
+      : fresh;
+
+    localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(record));
   } catch (err) {
     // Storage unavailable; the lead just goes out without attribution.
   }
+}
+
+/** Coarse device bucket — enough to see where registrations come from. */
+function deviceType() {
+  const ua = navigator.userAgent || "";
+  if (/iPad|Tablet|PlayBook|Silk/i.test(ua) || (/Android/i.test(ua) && !/Mobile/i.test(ua))) {
+    return "Tablet";
+  }
+  if (/Mobi|Android|iPhone|iPod/i.test(ua)) return "Mobile";
+  return "Desktop";
 }
 
 function readAttribution() {
