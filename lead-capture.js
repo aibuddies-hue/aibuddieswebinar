@@ -24,7 +24,7 @@ const MAX_DELIVERY_ATTEMPTS = 5;
  * Bumped whenever a new field is added below, so a visitor who was already
  * recorded under an older shape still gets the new columns filled in.
  */
-const ATTRIBUTION_VERSION = 2;
+const ATTRIBUTION_VERSION = 3;
 
 /**
  * Records where the visitor came from, on their first landing.
@@ -65,10 +65,63 @@ function captureAttribution() {
       ? Object.assign({}, fresh, stored, { v: ATTRIBUTION_VERSION })
       : fresh;
 
+    // Worked out after the merge, so it reads the first-touch utm_source and
+    // referrer rather than whatever this particular visit happened to carry.
+    if (!record.channel) record.channel = deriveChannel(record);
+
     localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(record));
   } catch (err) {
     // Storage unavailable; the lead just goes out without attribution.
   }
+}
+
+/**
+ * One always-filled answer to "where did this lead come from".
+ *
+ * utm_source is the truth when it is there, but plenty of real traffic never
+ * carries it — an Instagram bio tap, a forwarded WhatsApp link, an organic
+ * share. Those used to land in the sheet as a blank Source, which makes the
+ * column useless for counting. So when the link carried no utm_source this
+ * falls back to the click id, then to the referring site, and finally says
+ * "direct" rather than nothing at all.
+ *
+ * utm_source itself is never overwritten — the Source column stays exactly
+ * what the ad link said, and this sits beside it.
+ */
+function deriveChannel(a) {
+  if (a.utm_source) return a.utm_source;
+  if (a.fbclid) return "facebook";
+  if (a.gclid) return "google";
+
+  var host = "";
+  try {
+    host = new URL(a.referrer).hostname.replace(/^www\./, "").toLowerCase();
+  } catch (err) {
+    host = "";
+  }
+  if (!host) return "direct";
+
+  // Someone moving between pages of the site is not a new source.
+  if (host === window.location.hostname.replace(/^www\./, "").toLowerCase()) return "direct";
+
+  const known = [
+    [/(^|\.)facebook\.com$|^fb\.(com|me)$/, "facebook"],
+    [/(^|\.)instagram\.com$/, "instagram"],
+    [/(^|\.)whatsapp\.com$|^wa\.me$/, "whatsapp"],
+    [/(^|\.)youtube\.com$|^youtu\.be$/, "youtube"],
+    [/(^|\.)google\./, "google"],
+    [/(^|\.)linkedin\.com$|^lnkd\.in$/, "linkedin"],
+    [/(^|\.)(twitter|x)\.com$|^t\.co$/, "twitter"],
+    [/(^|\.)telegram\.(org|me)$|^t\.me$/, "telegram"],
+    [/(^|\.)threads\.(net|com)$/, "threads"],
+    [/(^|\.)bing\.com$/, "bing"],
+    [/(^|\.)reddit\.com$/, "reddit"]
+  ];
+  for (var i = 0; i < known.length; i++) {
+    if (known[i][0].test(host)) return known[i][1];
+  }
+  // Anything else is still more useful named than blank.
+  return host;
 }
 
 /** Coarse device bucket — enough to see where registrations come from. */

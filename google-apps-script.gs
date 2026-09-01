@@ -74,7 +74,9 @@ var COLUMNS = [
   "Lead ID",         // unique per registration; used to block duplicates
   "Device",          // Mobile / Tablet / Desktop
   "FB Click ID",     // fbclid — matches the lead back to the Meta click
-  "Google Click ID"  // gclid
+  "Google Click ID", // gclid
+  "Channel"          // always filled: utm_source, else the referring site,
+                     // else "direct" — use this one for counting
 ];
 
 /** Column widths, so the sheet is readable without dragging anything. */
@@ -90,7 +92,8 @@ var COLUMN_WIDTHS = {
   "Landing Page": 260,
   "Lead ID": 240,
   "FB Click ID": 200,
-  "Google Click ID": 200
+  "Google Click ID": 200,
+  "Channel": 140
 };
 
 /* ==========================================
@@ -134,7 +137,8 @@ function sendTestLead() {
     page: "https://example.com/webinar?utm_source=facebook",
     device: "Mobile",
     fbclid: "TEST_FBCLID",
-    gclid: ""
+    gclid: "",
+    channel: "facebook"
   });
   SpreadsheetApp.flush();
   Logger.log("Test row written. Check the Leads tab, then delete that row.");
@@ -206,7 +210,8 @@ function writeLead_(sheet, lead) {
     lead.id || "",
     lead.device || "",
     lead.fbclid || "",
-    lead.gclid || ""
+    lead.gclid || "",
+    lead.channel || ""
   ]);
 }
 
