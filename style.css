@@ -4022,3 +4022,134 @@ body {
     grid-column: 2;
   }
 }
+
+
+/* ==================================================
+ * THANK-YOU — GROUP JOIN POPUP
+ * ================================================== */
+
+.ty-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(7, 13, 24, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: tyPopupFade 0.3s ease;
+}
+
+@keyframes tyPopupFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ty-popup-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 30px 24px 24px;
+  border-radius: 16px;
+  background: #ffffff;
+  border: 1px solid var(--surface-border-gold);
+  box-shadow: 0 30px 70px rgba(7, 13, 24, 0.45);
+  text-align: center;
+  animation: tyPopupIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes tyPopupIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+.ty-popup-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.4);
+}
+
+.ty-popup-card h2 {
+  font-size: 1.3rem;
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.ty-popup-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: #4a5769;
+  margin-bottom: 12px;
+}
+
+.ty-popup-text strong {
+  color: #0f172a;
+}
+
+/* The consequence of skipping, stated plainly */
+.ty-popup-warn {
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #d62828;
+  background: rgba(214, 40, 40, 0.06);
+  border: 1px solid rgba(214, 40, 40, 0.2);
+  border-radius: 8px;
+  padding: 9px 12px;
+  margin-bottom: 20px;
+}
+
+.ty-popup-btn {
+  text-decoration: none;
+  background: #25d366;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.42);
+}
+
+.ty-popup-btn:hover {
+  background: #21c05c;
+  box-shadow: 0 12px 36px rgba(37, 211, 102, 0.6);
+}
+
+.ty-popup-later {
+  display: block;
+  width: 100%;
+  margin-top: 14px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.ty-popup-later:hover {
+  color: #0f172a;
+}
+
+@media (min-width: 768px) {
+  .ty-popup-card {
+    padding: 36px 32px 28px;
+  }
+
+  .ty-popup-card h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* The card takes focus when the dialog opens; it is a container, not a
+   control, so it should not paint a focus ring. */
+.ty-popup-card:focus {
+  outline: none;
+}
