@@ -37,15 +37,11 @@ const VSL_VIDEO_SRC = "https://youtu.be/qS9Ds9DQTR4";
 const SUMMIT_DATE = new Date("2026-09-06T11:00:00+05:30");
 
 /**
- * Both labels are derived from SUMMIT_DATE rather than typed out, so the
- * countdown, the stored lead record and the WhatsApp confirmation can
- * never disagree about the date again.
+ * Derived from SUMMIT_DATE rather than typed out, so the countdown and the
+ * stored lead record can never disagree about the date.
  */
 const SUMMIT_DATE_FULL = SUMMIT_DATE.toLocaleDateString("en-IN", {
   weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata"
-});
-const SUMMIT_DATE_SHORT = SUMMIT_DATE.toLocaleDateString("en-IN", {
-  weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata"
 });
 
 /* ==========================================
@@ -559,17 +555,9 @@ function handleRegistration(event) {
   localStorage.setItem("creator_summit_lead", JSON.stringify(leadData));
   localStorage.setItem("has_registered", "true");
 
-  // Format pre-filled WhatsApp text for instant registration confirmation via AiSensy
-  const messageText = `Hi Rudra! I have completed my registration for the AI Creator Summit on ${SUMMIT_DATE_SHORT}.\n\n*My Details:*\n- Name: ${name}\n- Email: ${email}\n- Segment: ${segment}\n\nLooking forward to the live builds!`;
-  const encText = encodeURIComponent(messageText);
-  const whatsappUrl = `https://wa.me/919516194751?text=${encText}`;
-
-  // Until a webhook exists, this WhatsApp message is the ONLY thing that
-  // actually delivers the lead, so it must keep firing. Opening it in a new
-  // tab from inside a click handler counts as a user gesture and is not
-  // treated as a popup, and the visitor still lands on the thank-you page.
-  // If a browser does block it, the thank-you page offers the same link.
-  window.open(whatsappUrl, "_blank", "noopener");
+  // Straight to the confirmation page. The registration no longer opens a
+  // prefilled WhatsApp message on the way — the lead reaches the sheet, and
+  // the one action asked of the visitor is joining the group.
   window.location.href = "thank-you.html";
 }
 

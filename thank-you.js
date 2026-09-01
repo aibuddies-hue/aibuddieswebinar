@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
   greetByName();
   renderDates();
   initGroupLink();
-  initConfirmFallback();
+  initGroupPopup();
   initCalendarLinks();
   initCountdown();
   initScrollReveal();
@@ -154,18 +154,22 @@ function initGroupLink() {
 }
 
 /* ==========================================
-   CONFIRMATION FALLBACK
+   GROUP JOIN POPUP
    ========================================== */
 /**
- * The landing page opens the WhatsApp confirmation in a new tab on submit.
- * If that tab was blocked, or the visitor closed it, this rebuilds the same
- * prefilled message from the stored lead so the registration is not lost.
- * Hidden entirely when there is no stored lead to rebuild it from.
+ * Puts the group invite in front of the visitor instead of relying on them
+ * scrolling to step 1. Joining is the only thing that gets them the Zoom
+ * link, so it is worth interrupting for.
+ *
+ * Shown once per registration: dismissing it records the lead's own marker,
+ * so a refresh does not nag, but a genuinely new registration sees it again.
+ * Never shown when there is no group link configured, or on a direct visit
+ * with no registration behind it.
  */
-function initConfirmFallback() {
-  const wrap = $("#confirm-fallback");
-  const link = $("#confirm-link");
-  if (!wrap || !link) return;
+function initGroupPopup() {
+  const popup = $("#group-popup");
+  const link = (WHATSAPP_GROUP_LINK || "").trim();
+  if (!popup || !link) return;
 
   let lead = null;
   try {
@@ -175,17 +179,49 @@ function initConfirmFallback() {
   }
   if (!lead || !lead.name) return;
 
-  const short = SUMMIT_DATE.toLocaleDateString("en-IN", {
-    weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata"
+  const marker = lead.timestamp || lead.phone || "1";
+  try {
+    if (localStorage.getItem("group_popup_dismissed") === marker) return;
+  } catch (err) {
+    // Storage unavailable; showing it is better than silently skipping it.
+  }
+
+  const btn = $("#group-popup-btn");
+  if (btn) btn.href = link;
+
+  const close = () => {
+    popup.hidden = true;
+    document.body.style.overflow = "";
+    try {
+      localStorage.setItem("group_popup_dismissed", marker);
+    } catch (err) {
+      // Nothing to do.
+    }
+  };
+
+  const open = () => {
+    popup.hidden = false;
+    document.body.style.overflow = "hidden";
+    // Move focus into the dialog so screen readers announce it, but onto the
+    // card rather than the button — focusing the button paints a focus ring
+    // on it for a visitor who never touched the keyboard.
+    const card = popup.querySelector(".ty-popup-card");
+    if (card) card.focus();
+  };
+
+  $("#group-popup-close").addEventListener("click", close);
+  $("#group-popup-later").addEventListener("click", close);
+  popup.addEventListener("click", (e) => {
+    if (e.target === popup) close();
   });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !popup.hidden) close();
+  });
+  // Joining is the goal — once they tap through, stop showing it.
+  if (btn) btn.addEventListener("click", close);
 
-  const message =
-    `Hi Rudra! I have completed my registration for the AI Creator Summit on ${short}.` +
-    `\n\n*My Details:*\n- Name: ${lead.name}\n- Email: ${lead.email || ""}` +
-    `\n- Segment: ${lead.segment || ""}\n\nLooking forward to the live builds!`;
-
-  link.href = `https://wa.me/919516194751?text=${encodeURIComponent(message)}`;
-  wrap.hidden = false;
+  // A short beat so the confirmation registers before the popup lands.
+  setTimeout(open, 900);
 }
 
 /* ==========================================
