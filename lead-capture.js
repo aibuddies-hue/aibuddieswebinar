@@ -14,7 +14,7 @@
  * are still queued locally and will be delivered the first time someone
  * loads the page after a URL is set, so nothing is lost in the meantime.
  */
-const LEAD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwyaxLckcxho0yAr7vgfNrOF2sns2czF-imps0KweoRquJDSo3PpEiGq6qIBzajeksO/exec";
+const LEAD_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyivHtNtXNfBWkEzhUO_fRgL2ZEj94RoCPnfQOD_xk4XQzBUX6voUT4VyDTUmngdwnR/exec";
 
 const LEAD_QUEUE_KEY = "pending_leads";
 const ATTRIBUTION_KEY = "lead_attribution";
