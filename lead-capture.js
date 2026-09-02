@@ -27,13 +27,11 @@ const MAX_DELIVERY_ATTEMPTS = 5;
 const ATTRIBUTION_VERSION = 3;
 
 /**
- * Records where the visitor came from, on their first landing.
+ * Records where the visitor came from.
  * Captured on arrival rather than at submit because a visitor may open
  * the page from an ad, wander off, and come back without the parameters.
  *
- * First touch wins: anything already recorded is kept, and only fields that
- * were never collected before are filled in. That way the ad that actually
- * brought them in stays credited even if they return through a direct visit.
+ * Last non-direct touch wins — see shouldReplace below for why.
  */
 function captureAttribution() {
   try {
@@ -61,18 +59,46 @@ function captureAttribution() {
       stored = null;
     }
 
-    const record = (stored && typeof stored === "object")
-      ? Object.assign({}, fresh, stored, { v: ATTRIBUTION_VERSION })
-      : fresh;
+    fresh.channel = deriveChannel(fresh);
 
-    // Worked out after the merge, so it reads the first-touch utm_source and
-    // referrer rather than whatever this particular visit happened to carry.
+    const record = shouldReplace(stored, fresh)
+      ? fresh
+      : Object.assign({}, fresh, stored, { v: ATTRIBUTION_VERSION });
+
+    // A record stored before this field existed still needs one.
     if (!record.channel) record.channel = deriveChannel(record);
 
     localStorage.setItem(ATTRIBUTION_KEY, JSON.stringify(record));
   } catch (err) {
     // Storage unavailable; the lead just goes out without attribution.
   }
+}
+
+/**
+ * Decides whether this visit replaces what was already recorded.
+ *
+ * The model is "last non-direct touch wins", which is what ad reporting
+ * needs. Keeping the very first touch instead sounds fair but quietly robs
+ * the ads: someone reads an organic post, opens the site, leaves, then later
+ * clicks an ad and registers — under a first-touch rule that lead is filed
+ * as organic and the ad that actually paid for it shows nothing.
+ *
+ * So a visit carrying campaign parameters always replaces the record, and a
+ * visit arriving from a real referring site replaces a record that only ever
+ * said "direct". A plain return visit changes nothing, which is the point:
+ * coming back later must not overwrite the ad that brought them.
+ */
+function shouldReplace(stored, fresh) {
+  if (!stored || typeof stored !== "object") return true;
+
+  const hasCampaign = !!(fresh.utm_source || fresh.utm_medium || fresh.utm_campaign ||
+                         fresh.utm_content || fresh.utm_term || fresh.fbclid || fresh.gclid);
+  if (hasCampaign) return true;
+
+  // Nothing on the URL, but they arrived from somewhere real and all we had
+  // was "direct" — that is still better information than nothing.
+  const storedChannel = stored.channel || "";
+  return (!storedChannel || storedChannel === "direct") && fresh.channel !== "direct";
 }
 
 /**
