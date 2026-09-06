@@ -30,20 +30,6 @@
  */
 const VSL_VIDEO_SRC = "https://youtu.be/qS9Ds9DQTR4";
 
-/**
- * Summit start, in IST (+05:30). Drives the countdown timers.
- * Change this one value when the date moves.
- */
-const SUMMIT_DATE = new Date("2026-09-13T11:00:00+05:30");
-
-/**
- * Derived from SUMMIT_DATE rather than typed out, so the countdown and the
- * stored lead record can never disagree about the date.
- */
-const SUMMIT_DATE_FULL = SUMMIT_DATE.toLocaleDateString("en-IN", {
-  weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata"
-});
-
 /* ==========================================
    2. UTILITIES
    ========================================== */
@@ -54,6 +40,7 @@ const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 document.addEventListener("DOMContentLoaded", () => {
   captureAttribution();
   flushLeadQueue();
+  renderSummitDates();
   initVslPlayer();
   initScrollReveal();
   initCountUps();
@@ -242,6 +229,11 @@ function initCountdown() {
 
   const pad = (n) => String(n).padStart(2, "0");
 
+  // Declared up here because the first tick runs before the interval is
+  // started: on a Sunday the visitor may well arrive after 11:00, and
+  // reaching for the timer from inside that first call would throw.
+  let timer = null;
+
   const tick = () => {
     const remaining = SUMMIT_DATE.getTime() - Date.now();
 
@@ -249,7 +241,7 @@ function initCountdown() {
     // showing a frozen or negative clock.
     if (remaining <= 0) {
       groups.forEach((g) => $(g.root).classList.add("countdown-ended"));
-      clearInterval(timer);
+      if (timer) clearInterval(timer);
       return;
     }
 
@@ -272,7 +264,7 @@ function initCountdown() {
   };
 
   tick();
-  const timer = setInterval(tick, 1000);
+  timer = setInterval(tick, 1000);
 }
 
 /* ==========================================

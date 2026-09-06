@@ -67,7 +67,7 @@
   <div class="announcement-bar" id="announcement-bar">
     <div class="bar-content">
       <span class="live-indicator"><span class="dot"></span>LIVE</span>
-      <span class="bar-text">Sunday 13 September, 11:00 AM &middot; Only <strong id="bar-seats">93</strong> seats left &middot; Free entry</span>
+      <span class="bar-text"><span class="js-date-short">Sunday 13 September</span>, 11:00 AM &middot; Only <strong id="bar-seats">93</strong> seats left &middot; Free entry</span>
       <button class="bar-btn" onclick="openModal()">Reserve My Seat</button>
     </div>
   </div>
@@ -677,7 +677,7 @@
       <div class="price-box" data-reveal>
         <h2 class="section-title" data-reveal>It's free. <span class="highlight-red">It isn't casual.</span></h2>
         <p class="price-desc">
-          There are 200 seats and there is no recording. If you don't show up on 13 September at 11:00 AM, you don't get this.
+          There are 200 seats and there is no recording. If you don't show up on <span class="js-date-daymonth">13 September</span> at 11:00 AM, you don't get this.
         </p>
         <p class="price-desc">
           We're not charging you money. We're asking for three uninterrupted hours — because you'll be building alongside, not watching.
@@ -874,7 +874,7 @@
             <span class="faq-toggle-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p>Sunday, 13 September 2026 at 11:00 AM IST. The Zoom link reaches your WhatsApp the moment you register.</p>
+            <p><span class="js-date-full">Sunday 13 September, 2026</span> at 11:00 AM IST. The Zoom link reaches your WhatsApp the moment you register.</p>
           </div>
         </div>
 
@@ -983,7 +983,7 @@
         <p class="final-desc">
           Three hours. Seven tools. Seven finished assets. And an AI that calls your phone.
         </p>
-        <p class="date-rem">Sunday, 13 September &bull; 11:00 AM &bull; Once.</p>
+        <p class="date-rem"><span class="js-date-short">Sunday 13 September</span> &bull; 11:00 AM &bull; Once.</p>
         <button class="primary-btn pulse-glow" onclick="openModal()">
           Reserve My Free Seat
         </button>
@@ -1074,7 +1074,7 @@
           <!-- Commitment Checkbox (CRITICAL for show-up rate) -->
           <div class="commitment-wrapper">
             <input type="checkbox" id="commitment" name="commitment" required>
-            <label for="commitment">I will attend the live Zoom session on Sunday, 13 September, 11:00 AM IST for all 3 hours.</label>
+            <label for="commitment">I will attend the live Zoom session on <span class="js-date-short">Sunday 13 September</span>, 11:00 AM IST for all 3 hours.</label>
           </div>
           <span class="field-error" id="err-commitment"></span>
 
@@ -1143,6 +1143,7 @@
     </svg>
   </a>
 
+  <script src="summit-date.js"></script>
   <script src="lead-capture.js"></script>
   <script src="landing.js"></script>
 </body>
