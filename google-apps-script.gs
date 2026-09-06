@@ -126,7 +126,7 @@ function sendTestLead() {
     phone: "+919999999999",
     email: "test@example.com",
     segment: "Test",
-    summitDate: "Sunday, 6 September 2026",
+    summitDate: "Sunday, 13 September 2026",
     timestamp: new Date().toISOString(),
     utm_source: "facebook",
     utm_medium: "cpc",
