@@ -18,10 +18,6 @@
  */
 const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/HOxDGMPW4yECCh4S5fBhXw";
 
-/** Summit start, in IST. Keep this in step with SUMMIT_DATE in landing.js. */
-const SUMMIT_DATE = new Date("2026-09-13T11:00:00+05:30");
-const SUMMIT_DURATION_HOURS = 3;
-
 const SUMMIT_TITLE = "AI Creator Summit — Live with Rudra Sahu";
 const SUMMIT_DETAILS =
   "3 hours, live on Zoom. Build an ad creative, an AI video, your AI avatar, " +
@@ -116,17 +112,11 @@ function greetByName() {
 }
 
 function renderDates() {
-  const full = SUMMIT_DATE.toLocaleDateString("en-IN", {
-    weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "Asia/Kolkata"
-  });
-  const short = SUMMIT_DATE.toLocaleDateString("en-IN", {
-    weekday: "long", day: "numeric", month: "long", timeZone: "Asia/Kolkata"
-  });
-
   const a = $("#ty-date");
   const b = $("#ty-date-2");
-  if (a) a.textContent = full;
-  if (b) b.textContent = short;
+  if (a) a.textContent = SUMMIT_DATE_FULL;
+  if (b) b.textContent = SUMMIT_DATE_SHORT;
+  renderSummitDates();
 }
 
 /* ==========================================
@@ -283,12 +273,16 @@ function initCountdown() {
     if (el && el.textContent !== val) el.textContent = val;
   };
 
+  // Declared before the first tick, which runs synchronously and may already
+  // find the session started — see the same note in landing.js.
+  let timer = null;
+
   const tick = () => {
     const remaining = SUMMIT_DATE.getTime() - Date.now();
 
     if (remaining <= 0) {
       root.classList.add("countdown-ended");
-      clearInterval(timer);
+      if (timer) clearInterval(timer);
       return;
     }
 
@@ -300,7 +294,7 @@ function initCountdown() {
   };
 
   tick();
-  const timer = setInterval(tick, 1000);
+  timer = setInterval(tick, 1000);
 }
 
 /* ==========================================
