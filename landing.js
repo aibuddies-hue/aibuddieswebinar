@@ -34,7 +34,7 @@ const VSL_VIDEO_SRC = "https://youtu.be/qS9Ds9DQTR4";
  * Summit start, in IST (+05:30). Drives the countdown timers.
  * Change this one value when the date moves.
  */
-const SUMMIT_DATE = new Date("2026-09-06T11:00:00+05:30");
+const SUMMIT_DATE = new Date("2026-09-13T11:00:00+05:30");
 
 /**
  * Derived from SUMMIT_DATE rather than typed out, so the countdown and the
