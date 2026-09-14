@@ -95,6 +95,27 @@ const SUMMIT_DATE_DAY_MONTH = SUMMIT_DATE.toLocaleDateString("en-IN", {
 });
 
 /**
+ * The short forms are built by hand rather than left to the locale, which
+ * abbreviates September as "Sept" and slips a comma in before the year —
+ * "Sun, 13 Sept, 2026". The sticky bar has no room for either.
+ */
+const DAYS_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const MONTHS_SHORT = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const summitInIst = new Date(SUMMIT_DATE.getTime() + IST_OFFSET_MS);
+
+/** "Sun, 13 Sep" — for the sticky bar, where space is tight. */
+const SUMMIT_DATE_COMPACT =
+  DAYS_SHORT[summitInIst.getUTCDay()] + ", " +
+  summitInIst.getUTCDate() + " " +
+  MONTHS_SHORT[summitInIst.getUTCMonth()];
+
+/** "Sun, 13 Sep 2026" */
+const SUMMIT_DATE_COMPACT_YEAR =
+  SUMMIT_DATE_COMPACT + " " + summitInIst.getUTCFullYear();
+
+/**
  * Fills every date printed in the markup.
  *
  * The HTML still carries a readable date so the page is never blank, but
@@ -110,4 +131,6 @@ function renderSummitDates() {
   write(".js-date-full", SUMMIT_DATE_FULL);
   write(".js-date-short", SUMMIT_DATE_SHORT);
   write(".js-date-daymonth", SUMMIT_DATE_DAY_MONTH);
+  write(".js-date-compact", SUMMIT_DATE_COMPACT);
+  write(".js-date-compact-year", SUMMIT_DATE_COMPACT_YEAR);
 }
