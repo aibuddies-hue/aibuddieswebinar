@@ -47,10 +47,22 @@ const MIME = {
   ".xml": "application/xml; charset=utf-8"
 };
 
-// Hashed names are not in use here, so HTML must revalidate or visitors keep
-// seeing an old page after a deploy. Static assets can be cached hard.
+/**
+ * No filename here carries a content hash, so anything that changes between
+ * deploys has to be revalidated or visitors keep running the old version.
+ *
+ * That is not theoretical: the scripts were once cached for a week, and a
+ * deploy that changed the WhatsApp group link left everyone who had already
+ * opened the page pointed at the old group until the cache expired.
+ *
+ * So the pages and the code they load revalidate on every request — they are
+ * small, and the 304 below makes a revalidation nearly free. Images, fonts
+ * and media never change without being renamed, so they stay cached hard.
+ */
 function cacheControl(ext) {
-  if (ext === ".html" || ext === "") return "no-cache";
+  if (ext === ".html" || ext === "" || ext === ".js" || ext === ".css") {
+    return "no-cache";
+  }
   return "public, max-age=604800";
 }
 
@@ -66,11 +78,24 @@ function serveFile(req, res, filePath) {
   fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) return notFound(res);
 
+    const lastModified = stat.mtime.toUTCString();
+
+    // "no-cache" means revalidate, not "never cache" — so answer the
+    // revalidation properly. Without this every page load would re-send
+    // every script in full.
+    const since = Date.parse(req.headers["if-modified-since"] || "");
+    if (!isNaN(since) && Math.floor(stat.mtimeMs / 1000) * 1000 <= since) {
+      return send(res, 304, null, {
+        "Cache-Control": cacheControl(ext),
+        "Last-Modified": lastModified
+      });
+    }
+
     const headers = {
       "Content-Type": type,
       "Content-Length": stat.size,
       "Cache-Control": cacheControl(ext),
-      "Last-Modified": stat.mtime.toUTCString()
+      "Last-Modified": lastModified
     };
 
     // A HEAD request must not carry a body, but keeps the same headers.
