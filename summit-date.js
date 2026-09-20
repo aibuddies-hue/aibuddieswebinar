@@ -20,10 +20,12 @@
  *
  *   const SUMMIT_DATE_OVERRIDE = "2026-10-04";
  *
- * While this holds a date the page stops rolling forward and shows exactly
- * that day. Set it back to "" and the weekly rhythm resumes on its own.
+ * The page shows exactly that day and stops rolling — but only up to the end
+ * of that day. Once it has passed, the weekly rhythm resumes on its own, so
+ * a pin left behind can never strand the page on a date that has gone.
+ * Clearing it back to "" resumes the rhythm immediately.
  */
-const SUMMIT_DATE_OVERRIDE = "";
+const SUMMIT_DATE_OVERRIDE = "2026-10-04";
 
 /** Start time and length, in IST. */
 const SUMMIT_HOUR_IST = 11;
@@ -44,11 +46,18 @@ const SUMMIT_DURATION_HOURS = 3;
 const IST_OFFSET_MS = (5 * 60 + 30) * 60 * 1000;
 
 function nextSummitDate() {
-  const pinned = (SUMMIT_DATE_OVERRIDE || "").trim();
-  if (pinned) {
-    const fixed = new Date(pinned + "T" + pad2(SUMMIT_HOUR_IST) + ":" + pad2(SUMMIT_MINUTE_IST) + ":00+05:30");
+  const pinned = (SUMMIT_DATE_OVERRIDE || "").trim().split("-");
+  if (pinned.length === 3) {
+    const y = Number(pinned[0]), mo = Number(pinned[1]), d = Number(pinned[2]);
     // A typo in the override must not leave the page with an unusable date.
-    if (!isNaN(fixed.getTime())) return fixed;
+    if (y && mo && d) {
+      // Midnight IST at the end of the pinned day — the same moment the
+      // weekly roll uses, so a pinned week hands back cleanly to the rhythm.
+      const pinEndsAt = Date.UTC(y, mo - 1, d + 1, 0, 0, 0) - IST_OFFSET_MS;
+      if (Date.now() < pinEndsAt) {
+        return new Date(Date.UTC(y, mo - 1, d, SUMMIT_HOUR_IST, SUMMIT_MINUTE_IST, 0) - IST_OFFSET_MS);
+      }
+    }
   }
 
   const nowInIst = new Date(Date.now() + IST_OFFSET_MS);
@@ -67,10 +76,6 @@ function nextSummitDate() {
     SUMMIT_MINUTE_IST,
     0
   ) - IST_OFFSET_MS);
-}
-
-function pad2(n) {
-  return String(n).padStart(2, "0");
 }
 
 /* ==========================================
