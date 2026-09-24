@@ -4,14 +4,16 @@
  * ─────────────────────────────────────────────────────────────
  * SETUP — do this once, in this order
  *
- * 1. Open your Google Sheet. Copy the long id from its URL, the part
- *    between /d/ and /edit:
- *      https://docs.google.com/spreadsheets/d/THIS_PART_HERE/edit
- *    Paste it into SHEET_ID below.
- *
- * 2. Extensions -> Apps Script. Delete whatever is in the editor, paste
+ * 1. Extensions -> Apps Script. Delete whatever is in the editor, paste
  *    this whole file, and SAVE (Ctrl+S). Apps Script deploys the SAVED
  *    version, so deploying with unsaved changes ships the old code.
+ *
+ * 2. Project Settings (gear, left side) -> Script Properties. Add:
+ *      SHEET_ID             the long id from your Sheet's URL
+ *      CASHFREE_APP_ID      from Cashfree -> Developers -> API Keys
+ *      CASHFREE_SECRET_KEY  the same page
+ *      CASHFREE_ENV         sandbox, then production when you go live
+ *    Nothing account-specific belongs in the code itself.
  *
  * 3. In the function dropdown at the top pick "setupSheet" and press Run.
  *    Authorise when Google asks (it warns the app is unverified — that is
@@ -39,11 +41,22 @@
  */
 
 /**
- * The long id from your Sheet's URL, between /d/ and /edit.
- * You can leave this empty ONLY if this script was created from inside the
- * Sheet itself (Extensions -> Apps Script). Setting it always works.
+ * The long id from your Sheet's URL, between /d/ and /edit:
+ *   https://docs.google.com/spreadsheets/d/THIS_PART_HERE/edit
+ *
+ * Leave it empty here and set it as the Script Property SHEET_ID instead —
+ * that way this file can be copied straight out of the repository with
+ * nothing to edit, and your sheet id is not published with it.
+ *
+ * Only a script created from inside the Sheet itself (Extensions -> Apps
+ * Script) can do without it entirely.
  */
 var SHEET_ID = "";
+
+function sheetId_() {
+  if (SHEET_ID) return SHEET_ID;
+  return PropertiesService.getScriptProperties().getProperty("SHEET_ID") || "";
+}
 
 var SHEET_NAME = "Leads";
 
@@ -448,13 +461,15 @@ function writeLead_(sheet, lead) {
 function getSheet_() {
   // openById works from a standalone script too; getActiveSpreadsheet only
   // works when the script is bound to the Sheet.
-  var ss = SHEET_ID
-    ? SpreadsheetApp.openById(SHEET_ID)
+  var id = sheetId_();
+  var ss = id
+    ? SpreadsheetApp.openById(id)
     : SpreadsheetApp.getActiveSpreadsheet();
 
   if (!ss) {
     throw new Error(
-      "No spreadsheet. This is a standalone script, so set SHEET_ID at the top."
+      "No spreadsheet. This is a standalone script, so add a Script Property " +
+      "named SHEET_ID with your Sheet's id."
     );
   }
 
