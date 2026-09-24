@@ -34,10 +34,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script>document.documentElement.classList.add("js-reveal");</script>
 </head>
-<body class="light-theme ty-page">
+<body class="light-theme ty-page payment-pending">
+
+  <!-- PAYMENT GATE
+       Shown while Cashfree is being asked what happened to the order, and
+       left showing if the answer is anything but "paid". The confirmation
+       below it stays hidden until the seat is real. -->
+  <div class="pay-gate" id="pay-gate">
+    <div class="pay-gate-card">
+      <div class="pay-gate-spinner" id="pay-gate-spinner" aria-hidden="true"></div>
+      <h1 class="pay-gate-title" id="pay-gate-title">Checking your payment&hellip;</h1>
+      <p class="pay-gate-text" id="pay-gate-text">One moment &mdash; we&rsquo;re confirming this with Cashfree.</p>
+      <div class="pay-gate-actions" id="pay-gate-actions" hidden>
+        <a class="primary-btn" href="index.html">Try the payment again</a>
+        <a class="pay-gate-help" href="contact.html">Paid but still seeing this? Contact us</a>
+      </div>
+    </div>
+  </div>
 
   <!-- CONFIRMATION HERO -->
   <section class="ty-hero dark-section">
@@ -239,8 +255,9 @@
     </div>
   </div>
 
-  <script src="summit-date.js?v=3"></script>
-  <script src="lead-capture.js?v=3"></script>
-  <script src="thank-you.js?v=3"></script>
+  <script src="summit-date.js?v=4"></script>
+  <script src="lead-capture.js?v=4"></script>
+  <script src="payment.js?v=4"></script>
+  <script src="thank-you.js?v=4"></script>
 </body>
 </html>

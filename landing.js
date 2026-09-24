@@ -547,10 +547,39 @@ function handleRegistration(event) {
   localStorage.setItem("creator_summit_lead", JSON.stringify(leadData));
   localStorage.setItem("has_registered", "true");
 
-  // Straight to the confirmation page. The registration no longer opens a
-  // prefilled WhatsApp message on the way — the lead reaches the sheet, and
-  // the one action asked of the visitor is joining the group.
-  window.location.href = "thank-you.html";
+  if (!PAYMENT_ENABLED) {
+    window.location.href = "thank-you.html";
+    return;
+  }
+
+  // The seat is not real until it is paid for, so the form hands over to
+  // Cashfree rather than to the confirmation page. Cashfree brings them
+  // back to thank-you.html afterwards, where the payment is verified.
+  showPaymentError("");
+  startPayment(leadData).catch((err) => {
+    showPaymentError(
+      (err && err.message) ||
+      "We could not open the payment page. Please try again."
+    );
+    if (submitBtn) {
+      submitBtn.classList.remove("is-loading");
+      submitBtn.disabled = false;
+    }
+  });
+}
+
+/**
+ * Says so in the form when checkout could not be opened.
+ *
+ * Silently re-enabling the button would leave someone pressing it again with
+ * no idea why nothing happened.
+ */
+function showPaymentError(message) {
+  const slot = document.getElementById("payment-error");
+  if (!slot) return;
+
+  slot.textContent = message || "";
+  slot.hidden = !message;
 }
 
 /* ==========================================
