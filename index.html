@@ -57,7 +57,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <link rel="preload" as="image" href="assets/ai_video_thumbnail.webp" fetchpriority="high">
   <script>document.documentElement.classList.add("js-reveal");</script>
 </head>
@@ -1080,9 +1080,12 @@
           </div>
           <span class="field-error" id="err-commitment"></span>
 
+          <p class="payment-error" id="payment-error" hidden></p>
+
           <button type="submit" class="primary-btn submit-btn" id="final-submit-btn">
-            <span class="btn-text">Confirm My Seat &amp; Receive WhatsApp Link</span>
+            <span class="btn-text">Pay &#8377;9 &amp; Confirm My Seat</span>
           </button>
+          <p class="payment-note">You&rsquo;ll be taken to Cashfree&rsquo;s secure checkout. UPI, cards and net banking all work.</p>
           <button type="button" class="form-back-btn" onclick="goToStep(1)">&larr; Back</button>
         </div>
 
@@ -1145,8 +1148,10 @@
     </svg>
   </a>
 
-  <script src="summit-date.js?v=3"></script>
-  <script src="lead-capture.js?v=3"></script>
-  <script src="landing.js?v=3"></script>
+  <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+  <script src="summit-date.js?v=4"></script>
+  <script src="lead-capture.js?v=4"></script>
+  <script src="payment.js?v=4"></script>
+  <script src="landing.js?v=4"></script>
 </body>
 </html>

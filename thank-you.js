@@ -32,17 +32,110 @@ const $$ = (sel) => Array.from(document.querySelectorAll(sel));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Anything the landing page could not deliver gets another attempt here.
-  flushLeadQueue();
-  trackLeadOnce();
-  greetByName();
-  renderDates();
-  initGroupLink();
-  initGroupPopup();
-  initCalendarLinks();
-  initCountdown();
-  initScrollReveal();
+  // Nothing on this page is shown until the seat is known to be paid for.
+  checkPayment().then((paid) => {
+    if (!paid) return;
+
+    // Anything the landing page could not deliver gets another attempt here.
+    flushLeadQueue();
+    trackLeadOnce();
+    greetByName();
+    renderDates();
+    initGroupLink();
+    initGroupPopup();
+    initCalendarLinks();
+    initCountdown();
+    initScrollReveal();
+  });
 });
+
+/* ==========================================
+   PAYMENT GATE
+   ========================================== */
+/**
+ * Decides whether this visitor actually has a seat.
+ *
+ * The answer comes from Cashfree by way of Apps Script, never from the
+ * address bar — an "?order_id=" anyone can type is a claim, not a receipt.
+ * Until that answer is "paid", the confirmation stays hidden and the group
+ * invite is never handed over.
+ */
+function checkPayment() {
+  const reveal = () => {
+    document.body.classList.remove("payment-pending");
+    return true;
+  };
+
+  if (typeof PAYMENT_ENABLED !== "undefined" && !PAYMENT_ENABLED) return Promise.resolve(reveal());
+
+  const lead = readStoredLead();
+  const orderId = currentOrderId();
+
+  // No order and no registration behind it: a cold visit to the URL.
+  if (!orderId) {
+    if (!lead) {
+      failGate(
+        "Nothing to confirm here",
+        "This page shows your seat after you register. Start from the summit page."
+      );
+    } else {
+      failGate(
+        "We could not find your payment",
+        "Your registration is saved, but no completed payment is attached to it. Please try the payment again."
+      );
+    }
+    return Promise.resolve(false);
+  }
+
+  // A confirmed payment is not re-checked on every reload.
+  if (alreadyPaidLocally(orderId)) return Promise.resolve(reveal());
+
+  return verifyPayment(orderId, lead || {}).then((res) => {
+    if (res && res.paid) {
+      markPaidLocally(orderId);
+      return reveal();
+    }
+
+    if (res && res.error) {
+      failGate(
+        "We could not check your payment",
+        "Something went wrong reaching the payment service. If money has left your account, contact us and we will sort it out — do not pay twice."
+      );
+    } else if (res && res.status === "ACTIVE") {
+      failGate(
+        "Your payment is not complete",
+        "The order was created but never paid. Please try again."
+      );
+    } else {
+      failGate(
+        "That payment did not go through",
+        "No money was taken. Please try again — the seat is only held once payment completes."
+      );
+    }
+    return false;
+  });
+}
+
+function readStoredLead() {
+  try {
+    const lead = JSON.parse(localStorage.getItem("creator_summit_lead") || "null");
+    return lead && lead.name ? lead : null;
+  } catch (err) {
+    return null;
+  }
+}
+
+function failGate(title, text) {
+  const spinner = $("#pay-gate-spinner");
+  const heading = $("#pay-gate-title");
+  const body = $("#pay-gate-text");
+  const actions = $("#pay-gate-actions");
+
+  if (spinner) spinner.hidden = true;
+  if (heading) heading.textContent = title;
+  if (body) body.textContent = text;
+  if (actions) actions.hidden = false;
+}
 
 /* ==========================================
    META PIXEL — LEAD CONVERSION
