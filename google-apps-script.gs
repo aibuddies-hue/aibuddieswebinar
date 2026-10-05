@@ -58,7 +58,15 @@ function sheetId_() {
   return PropertiesService.getScriptProperties().getProperty("SHEET_ID") || "";
 }
 
+/**
+ * Two tabs, so a paid seat is never mixed in with someone who only filled
+ * the form. Every registration lands in the first; the moment Cashfree
+ * confirms the money, that row MOVES to the second.
+ *
+ * So: "Leads" is who still owes you Rs 9, "Paid" is your actual room.
+ */
 var SHEET_NAME = "Leads";
+var PAID_SHEET_NAME = "Paid";
 
 /* ==========================================
    CASHFREE
@@ -163,10 +171,13 @@ var COLUMN_WIDTHS = {
  * touches rows that are already there.
  */
 function setupSheet() {
-  var sheet = getSheet_();
+  var leads = getSheet_(SHEET_NAME);
+  var paid = getSheet_(PAID_SHEET_NAME);
   SpreadsheetApp.flush();
-  var msg = 'Ready. Tab "' + SHEET_NAME + '" has ' + COLUMNS.length +
-            ' columns and ' + Math.max(sheet.getLastRow() - 1, 0) + ' lead rows.';
+
+  var msg = 'Ready. ' + COLUMNS.length + ' columns. "' + SHEET_NAME + '" has ' +
+            Math.max(leads.getLastRow() - 1, 0) + ' unpaid, "' + PAID_SHEET_NAME +
+            '" has ' + Math.max(paid.getLastRow() - 1, 0) + ' paid.';
   Logger.log(msg);
   return msg;
 }
@@ -176,7 +187,7 @@ function setupSheet() {
  * traffic arrives. Delete the row afterwards.
  */
 function sendTestLead() {
-  var sheet = getSheet_();
+  var sheet = getSheet_(SHEET_NAME);
   writeLead_(sheet, {
     id: "test-" + Date.now(),
     name: "TEST LEAD — delete me",
@@ -227,15 +238,16 @@ function doPost(e) {
     if (body.action === "verifyOrder") return verifyOrder_(body.order_id, body.lead || {});
 
     var lead = body;
-    var sheet = getSheet_();
 
     // The page retries anything it could not confirm was delivered, so the
-    // same lead can legitimately arrive twice. Skip it if we already have it.
-    if (lead.id && hasLeadId_(sheet, lead.id)) {
+    // same lead can legitimately arrive twice. Both tabs are checked: once a
+    // seat is paid for, its row has moved, and a late retry of the original
+    // registration must not put it back among the unpaid.
+    if (lead.id && alreadyRecorded_(lead.id)) {
       return json_({ ok: true, duplicate: true });
     }
 
-    writeLead_(sheet, lead);
+    writeLead_(getSheet_(SHEET_NAME), lead);
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -373,12 +385,13 @@ function cashfreeFetch_(cf, path, method, payload) {
 }
 
 /**
- * Marks the registration paid.
+ * Moves the registration into the Paid tab.
  *
- * The lead row may not be in the sheet yet — the browser can reach the
- * confirmation page before the queued registration has been delivered — so
- * a missing row is written rather than dropped. Either way the seat ends up
- * recorded exactly once.
+ * Two awkward orderings have to work. The confirmation page can reach us
+ * before the queued registration has been delivered, so a row that is not in
+ * Leads yet is built from the lead itself rather than dropped. And the page
+ * re-checks on every reload, so a seat already sitting in Paid must be left
+ * exactly as it is rather than added twice.
  */
 function recordPayment_(lead, payment) {
   var lock = LockService.getScriptLock();
@@ -389,27 +402,40 @@ function recordPayment_(lead, payment) {
   }
 
   try {
-    var sheet = getSheet_();
-    var row = findRowByLeadId_(sheet, lead.id);
+    var paid = getSheet_(PAID_SHEET_NAME);
+    if (findRowByLeadId_(paid, lead.id)) return;   // already moved
 
-    if (!row) {
-      writeLead_(sheet, lead);
-      row = findRowByLeadId_(sheet, lead.id);
-      if (!row) return;
+    var leads = getSheet_(SHEET_NAME);
+    var row = findRowByLeadId_(leads, lead.id);
+
+    var values;
+    if (row) {
+      values = leads.getRange(row, 1, 1, COLUMNS.length).getValues()[0];
+      // Taken out of Leads only after it has been read, so a failure here
+      // cannot leave the registration in neither tab.
+      leads.deleteRow(row);
+    } else {
+      values = leadRow_(lead);
     }
 
-    var first = COLUMNS.indexOf("Payment Status") + 1;
-    sheet.getRange(row, first, 1, 4).setValues([[
-      payment.status,
-      payment.orderId,
-      payment.amount,
-      new Date()
-    ]]);
+    var first = COLUMNS.indexOf("Payment Status");
+    values[first] = payment.status;
+    values[first + 1] = payment.orderId;
+    values[first + 2] = payment.amount;
+    values[first + 3] = new Date();
+
+    paid.appendRow(values);
   } catch (err) {
     // Nothing useful to do; the payment itself already succeeded.
   } finally {
     lock.releaseLock();
   }
+}
+
+/** True if this lead is in either tab — used to block duplicate rows. */
+function alreadyRecorded_(id) {
+  return hasLeadId_(getSheet_(SHEET_NAME), id) ||
+         hasLeadId_(getSheet_(PAID_SHEET_NAME), id);
 }
 
 function findRowByLeadId_(sheet, id) {
@@ -430,7 +456,12 @@ function findRowByLeadId_(sheet, id) {
    ========================================== */
 
 function writeLead_(sheet, lead) {
-  sheet.appendRow([
+  sheet.appendRow(leadRow_(lead));
+}
+
+/** One lead as a row of cells, in COLUMNS order. */
+function leadRow_(lead) {
+  return [
     new Date(),
     lead.name || "",
     // Keep the leading + readable instead of letting Sheets treat it as a formula
@@ -455,10 +486,10 @@ function writeLead_(sheet, lead) {
     lead.orderId || "",
     lead.amountPaid || "",
     lead.paidAt || ""
-  ]);
+  ];
 }
 
-function getSheet_() {
+function getSheet_(name) {
   // openById works from a standalone script too; getActiveSpreadsheet only
   // works when the script is bound to the Sheet.
   var id = sheetId_();
@@ -473,9 +504,9 @@ function getSheet_() {
     );
   }
 
-  var sheet = ss.getSheetByName(SHEET_NAME);
+  var sheet = ss.getSheetByName(name);
   if (!sheet) {
-    sheet = ss.insertSheet(SHEET_NAME);
+    sheet = ss.insertSheet(name);
   }
 
   ensureHeader_(sheet);
