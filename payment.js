@@ -20,7 +20,7 @@
 const PAYMENT_ENABLED = true;
 
 /** Must match ORDER_AMOUNT in google-apps-script.gs and the price on the page. */
-const PAYMENT_AMOUNT = 9;
+const PAYMENT_AMOUNT = 49;
 
 /** Where the order id is remembered between the two pages. */
 const ORDER_KEY = "creator_summit_order";
