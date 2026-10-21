@@ -1,7 +1,7 @@
 /**
  * Business details shown on the policy pages.
  *
- * Razorpay's activation review opens the site and looks for a real, reachable
+ * A payment gateway's activation review opens the site and looks for a real, reachable
  * business behind it: a name, a postal address, an email and a phone number,
  * on pages linked from the footer. Keeping them here means one edit updates
  * every page instead of five.
@@ -33,7 +33,7 @@ const BUSINESS = {
 /** The public face of the product, reused across the policy pages. */
 const PRODUCT = {
   name: "AI Creator Summit",
-  price: "₹9",
+  price: "₹49",
   durationHours: 3,
   platform: "Zoom"
 };

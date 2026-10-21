@@ -85,7 +85,7 @@ var PAID_SHEET_NAME = "Paid";
    ========================================== */
 
 /** What a seat costs, in rupees. Keep this in step with the landing page. */
-var ORDER_AMOUNT = 9;
+var ORDER_AMOUNT = 49;
 
 /** Where Cashfree sends the visitor back after payment. */
 var RETURN_URL = "https://summit.aibuddiess.com/thank-you.html?order_id={order_id}";
