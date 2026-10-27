@@ -4668,18 +4668,6 @@ body.payment-pending .pay-gate {
   color: #201e1b;
 }
 
-/* The amount is struck through wherever it appears. */
-.value-total s {
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
-  text-decoration-color: rgba(200, 96, 63, 0.85);
-  font-weight: 800;
-}
-
-.value-stack.on-dark .value-total s {
-  text-decoration-color: rgba(255, 255, 255, 0.55);
-}
-
 /* Hero variant: the value, then the offer, stacked above the button. */
 .value-stack.hero-value {
   margin: 20px 0 16px;
