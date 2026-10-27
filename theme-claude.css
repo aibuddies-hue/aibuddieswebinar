@@ -4730,3 +4730,10 @@ body.payment-pending .pay-gate {
 .value-stack.on-dark .value-free-line strong {
   color: var(--secondary-orange);
 }
+
+/* The card numbers sat at 8% opacity, which read as a smudge rather than a
+   number. Dark enough to be read on the free page, still light enough to
+   stay behind the heading it sits beside. */
+.free-page .prob-num {
+  color: rgba(32, 30, 27, 0.32);
+}
