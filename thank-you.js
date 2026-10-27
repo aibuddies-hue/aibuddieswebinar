@@ -334,7 +334,7 @@ function initCalendarLinks() {
     const lines = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
-      "PRODID:-//AI Buddies//AI Creator Summit//EN",
+      "PRODID:-//AI Buddiess//AI Creator Summit//EN",
       "BEGIN:VEVENT",
       `UID:ai-creator-summit-${stamp(start)}@aibuddies`,
       `DTSTAMP:${stamp(new Date())}`,
