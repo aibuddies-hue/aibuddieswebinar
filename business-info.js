@@ -18,7 +18,7 @@ const BUSINESS = {
   address: "308, BH 11 Shivalik Complex / Pandit Dindayal Upadhyay Nagar, Sector, near Bapat Square, Indore, Madhya Pradesh 452010",
 
   /** Support email. Must be a mailbox someone actually reads. */
-  email: "",
+  email: "aig.aibuddiess@gmail.com",
 
   /** Support phone, in international form. */
   phone: "+91 95161 94751",
