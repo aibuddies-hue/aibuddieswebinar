@@ -4667,3 +4667,51 @@ body.payment-pending .pay-gate {
 .free-page .log-item {
   color: #201e1b;
 }
+
+/* The amount is struck through wherever it appears. */
+.value-total s {
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(200, 96, 63, 0.85);
+  font-weight: 800;
+}
+
+.value-stack.on-dark .value-total s {
+  text-decoration-color: rgba(255, 255, 255, 0.55);
+}
+
+/* Hero variant: the value, then the offer, stacked above the button. */
+.value-stack.hero-value {
+  margin: 20px 0 16px;
+}
+
+.value-stack.hero-value .value-total {
+  margin: 0;
+  font-size: clamp(0.98rem, 3vw, 1.12rem);
+  font-weight: 600;
+}
+
+.value-free-line {
+  font-family: var(--font-title);
+  font-size: clamp(1.1rem, 3.8vw, 1.42rem);
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 7px 0 0;
+  color: var(--text-main);
+}
+
+.value-free-line strong {
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--primary-gold);
+}
+
+.value-stack.on-dark .value-free-line {
+  color: #fff;
+}
+
+/* On the dark hero the clay is too close to the background; the lighter
+   tint of it carries instead. */
+.value-stack.on-dark .value-free-line strong {
+  color: var(--secondary-orange);
+}
