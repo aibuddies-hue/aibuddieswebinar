@@ -4453,80 +4453,29 @@ body.payment-pending .pay-gate {
   margin: 0;
 }
 
-/* A certificate drawn in CSS — no image to load, and it re-skins with the
-   theme tokens like everything else. */
+/* The real certificate, as it is issued. It was drawn in CSS while there
+   was no artwork to show; a picture of the actual thing is worth more than
+   an approximation of it. */
 .cert-visual {
-  position: relative;
-  max-width: 620px;
+  max-width: 680px;
   margin: 0 auto;
-  background: linear-gradient(160deg, #FFFDF8 0%, #F6F2E9 100%);
-  border: 1px solid var(--surface-border-gold);
   border-radius: 16px;
-  padding: 44px 40px;
-  text-align: center;
+  overflow: hidden;
   box-shadow: var(--shadow-md);
+  border: 1px solid var(--surface-border);
 }
 
-.cert-visual::after {
-  content: "";
-  position: absolute;
-  inset: 11px;
-  border: 1px solid var(--surface-border-gold);
-  border-radius: 9px;
-  pointer-events: none;
-}
-
-.cert-visual .cert-kicker {
-  font-size: 0.72rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 0 0 18px;
-}
-
-.cert-visual .cert-name {
-  font-family: var(--font-title);
-  font-size: clamp(1.5rem, 5vw, 1.95rem);
-  font-weight: 700;
-  margin: 0 0 8px;
-  color: var(--text-main);
-}
-
-.cert-visual .cert-for {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin: 0 auto 22px;
-  max-width: 380px;
-  line-height: 1.6;
-}
-
-.cert-seal {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--gold-gradient);
-  color: #fff;
-  font-size: 1.6rem;
-  box-shadow: var(--gold-glow);
-}
-
-.cert-visual .cert-sign {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  border-top: 1px solid var(--surface-border);
-  padding-top: 14px;
-  margin: 0;
+/* width/height on the tag reserve the right box before it loads, so the
+   sections below it do not jump as the page settles. */
+.cert-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 @media (max-width: 760px) {
   .cert-head {
-    margin-bottom: 26px;
-  }
-  .cert-visual {
-    padding: 32px 22px;
+    margin-bottom: 24px;
   }
 }
 
