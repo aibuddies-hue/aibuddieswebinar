@@ -4444,131 +4444,104 @@ body.payment-pending .pay-gate {
   background: var(--bg-color);
 }
 
-.cert-card {
-  max-width: 880px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
-  gap: 36px;
-  align-items: center;
-  background: var(--surface-color);
-  border: 1px solid var(--surface-border);
-  border-radius: 20px;
-  box-shadow: var(--shadow-md);
-  padding: 34px;
+/* Heading and a single line, centred above the certificate. The detail
+   that used to sit in a column beside it has gone: the certificate is the
+   thing people look at, and four bullets of small print next to it meant
+   neither got read. */
+.cert-head {
+  max-width: 660px;
+  margin: 0 auto 34px;
+  text-align: center;
 }
 
-.cert-copy h2 {
+.cert-head h2 {
   font-family: var(--font-title);
-  font-size: clamp(1.5rem, 4.4vw, 2.1rem);
+  font-size: clamp(1.6rem, 5vw, 2.25rem);
   line-height: 1.2;
-  margin: 10px 0 12px;
+  margin: 12px 0 14px;
 }
 
-.cert-copy p {
+.cert-head p {
   color: var(--text-muted);
   font-size: 1rem;
   line-height: 1.7;
-  margin: 0 0 18px;
-}
-
-.cert-list {
-  list-style: none;
   margin: 0;
-  padding: 0;
-}
-
-.cert-list li {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-bottom: 11px;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: var(--text-main);
-}
-
-.cert-list .tick {
-  color: var(--primary-gold);
-  font-weight: 700;
-  flex: 0 0 auto;
 }
 
 /* A certificate drawn in CSS — no image to load, and it re-skins with the
    theme tokens like everything else. */
 .cert-visual {
   position: relative;
+  max-width: 620px;
+  margin: 0 auto;
   background: linear-gradient(160deg, #FFFDF8 0%, #F6F2E9 100%);
   border: 1px solid var(--surface-border-gold);
-  border-radius: 14px;
-  padding: 26px 22px;
+  border-radius: 16px;
+  padding: 44px 40px;
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  transform: rotate(-1.4deg);
+  box-shadow: var(--shadow-md);
 }
 
 .cert-visual::after {
   content: "";
   position: absolute;
-  inset: 9px;
+  inset: 11px;
   border: 1px solid var(--surface-border-gold);
-  border-radius: 8px;
+  border-radius: 9px;
   pointer-events: none;
 }
 
 .cert-visual .cert-kicker {
-  font-size: 0.62rem;
-  letter-spacing: 0.17em;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin: 0 0 12px;
+  margin: 0 0 18px;
 }
 
 .cert-visual .cert-name {
   font-family: var(--font-title);
-  font-size: 1.22rem;
+  font-size: clamp(1.5rem, 5vw, 1.95rem);
   font-weight: 700;
-  margin: 0 0 4px;
+  margin: 0 0 8px;
   color: var(--text-main);
 }
 
 .cert-visual .cert-for {
-  font-size: 0.76rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  margin: 0 0 16px;
-  line-height: 1.5;
+  margin: 0 auto 22px;
+  max-width: 380px;
+  line-height: 1.6;
 }
 
 .cert-seal {
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 10px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   background: var(--gold-gradient);
   color: #fff;
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   box-shadow: var(--gold-glow);
 }
 
 .cert-visual .cert-sign {
-  font-size: 0.68rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   border-top: 1px solid var(--surface-border);
-  padding-top: 9px;
+  padding-top: 14px;
   margin: 0;
 }
 
 @media (max-width: 760px) {
-  .cert-card {
-    grid-template-columns: 1fr;
-    gap: 26px;
-    padding: 26px 20px;
+  .cert-head {
+    margin-bottom: 26px;
   }
   .cert-visual {
-    transform: none;
-    order: -1;
+    padding: 32px 22px;
   }
 }
 
