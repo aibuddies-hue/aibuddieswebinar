@@ -16,7 +16,7 @@
  * When the group is ready, paste the invite here, e.g.
  *   "https://chat.whatsapp.com/XXXXXXXXXXXXXXXXX"
  */
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/Ethbpg4gOCh8G7rGjYj3it";
+const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/HNv83JmmL8oIyET98MkVSq";
 
 const SUMMIT_TITLE = "AI Creator Summit — Live with Rudra Sahu";
 const SUMMIT_DETAILS =
