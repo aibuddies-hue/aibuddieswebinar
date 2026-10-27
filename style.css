@@ -4645,3 +4645,25 @@ body.payment-pending .pay-gate {
   padding: 9px 22px;
   border-radius: 10px;
 }
+
+/* --------------------------------------------------
+ * Free page: the logistics strip stays a white chip
+ *
+ * The dark-hero pass turns this into a translucent card, which reads well
+ * on the paid page. The free page wants it back as a solid white strip with
+ * dark text, so it stands out against the hero rather than blending in.
+ *
+ * Last in the file and a class deeper than the rule it replaces, so neither
+ * source order nor specificity can take it back.
+ * -------------------------------------------------- */
+.free-page .logistics-strip {
+  background: #ffffff;
+  border: 1px solid rgba(32, 30, 27, 0.12);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+.free-page .log-item {
+  color: #201e1b;
+}
