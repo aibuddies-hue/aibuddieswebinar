@@ -12,10 +12,10 @@
  */
 const BUSINESS = {
   /** Registered or trading name, exactly as it appears on the bank account. */
-  name: "",
+  name: "AI Buddiess",
 
   /** Full postal address, including city, state and PIN code. */
-  address: "",
+  address: "308, BH 11 Shivalik Complex / Pandit Dindayal Upadhyay Nagar, Sector, near Bapat Square, Indore, Madhya Pradesh 452010",
 
   /** Support email. Must be a mailbox someone actually reads. */
   email: "",
@@ -24,7 +24,7 @@ const BUSINESS = {
   phone: "+91 95161 94751",
 
   /** City whose courts have jurisdiction — normally where you are based. */
-  jurisdiction: "",
+  jurisdiction: "Indore",
 
   /** GSTIN, if you have one. Leave empty if not registered. */
   gstin: ""
