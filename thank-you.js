@@ -3,24 +3,48 @@
  */
 
 /* ==========================================
-   CONFIG — the only two values you edit here
+   CONFIG — the values you edit here
    ========================================== */
 
 /**
- * WhatsApp group invite link.
+ * WhatsApp group invite links — one group per page.
  *
- * Leave this as an empty string until the group exists. While it is empty
- * the join button is disabled and a short "link coming shortly" note is
- * shown instead, so the page never hands anyone a dead link.
+ * The paid summit and the free workshop keep separate groups, so a paying
+ * attendee is never dropped into the free room and the Zoom link for one
+ * never reaches the other.
  *
- * When the group is ready, paste the invite here, e.g.
+ * Leave a link as an empty string until that group exists. While it is
+ * empty the join button is disabled and a short "link coming shortly" note
+ * is shown instead, so the page never hands anyone a dead link.
+ *
+ * Paste an invite here as it comes from WhatsApp, e.g.
  *   "https://chat.whatsapp.com/XXXXXXXXXXXXXXXXX"
  */
-const WHATSAPP_GROUP_LINK = "https://chat.whatsapp.com/HNv83JmmL8oIyET98MkVSq";
+const WHATSAPP_GROUP_PAID = "https://chat.whatsapp.com/Ethbpg4gOCh8G7rGjYj3it";
+const WHATSAPP_GROUP_FREE = "https://chat.whatsapp.com/HNv83JmmL8oIyET98MkVSq";
+
+/**
+ * Which of the two this page uses. Both confirmation pages run this file;
+ * the free one announces itself by setting paid:false in window.SUMMIT_PAGE
+ * before the scripts load, and PAGE (from payment.js) carries that here.
+ */
+const WHATSAPP_GROUP_LINK =
+  (typeof PAGE !== "undefined" && PAGE.paid === false)
+    ? WHATSAPP_GROUP_FREE
+    : WHATSAPP_GROUP_PAID;
 
 const SUMMIT_TITLE = "AI Creator Summit — Live with Rudra Sahu";
+
+/**
+ * The calendar invite's description. The length comes from the page rather
+ * than being typed in, because the free workshop runs two hours and an
+ * invite that promised three would be wrong in the one place an attendee
+ * looks to plan their day.
+ */
+const SUMMIT_HOURS = (typeof PAGE !== "undefined" && PAGE.durationHours) || 3;
+
 const SUMMIT_DETAILS =
-  "3 hours, live on Zoom. Build an ad creative, an AI video, your AI avatar, " +
+  SUMMIT_HOURS + " hours, live on Zoom. Build an ad creative, an AI video, your AI avatar, " +
   "a brand jingle, a voice agent and an n8n automation. The Zoom link is shared " +
   "on WhatsApp before the session.";
 
