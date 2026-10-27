@@ -4613,3 +4613,35 @@ body.payment-pending .pay-gate {
     padding: 14px 40px;
   }
 }
+
+/* The same block on a dark background, and a one-line form for the hero. */
+.value-stack.on-dark .value-total {
+  color: #fff;
+}
+
+.value-stack.on-dark .value-today,
+.value-stack.on-dark .value-note {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.value-stack.compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 20px 0 16px;
+}
+
+.value-stack.compact .value-total,
+.value-stack.compact .value-today {
+  margin: 0;
+  font-size: clamp(0.92rem, 2.8vw, 1.05rem);
+}
+
+.value-stack.compact .value-free {
+  font-size: clamp(1.05rem, 3.4vw, 1.25rem);
+  letter-spacing: 0.09em;
+  padding: 9px 22px;
+  border-radius: 10px;
+}
