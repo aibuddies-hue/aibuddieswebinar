@@ -68,6 +68,17 @@ function sheetId_() {
 var SHEET_NAME = "Leads";
 var PAID_SHEET_NAME = "Paid";
 
+/**
+ * A free landing page sends its own tab name with each lead, so free
+ * registrations never land among people who are meant to pay. Anything
+ * unexpected falls back to the normal tab.
+ */
+function leadTab_(lead) {
+  var tab = String((lead && lead.sheetTab) || "").trim();
+  if (!tab || !/^[A-Za-z0-9 _-]{1,40}$/.test(tab)) return SHEET_NAME;
+  return tab;
+}
+
 /* ==========================================
    CASHFREE
 
@@ -243,11 +254,12 @@ function doPost(e) {
     // same lead can legitimately arrive twice. Both tabs are checked: once a
     // seat is paid for, its row has moved, and a late retry of the original
     // registration must not put it back among the unpaid.
-    if (lead.id && alreadyRecorded_(lead.id)) {
+    var tab = leadTab_(lead);
+    if (lead.id && alreadyRecorded_(lead.id, tab)) {
       return json_({ ok: true, duplicate: true });
     }
 
-    writeLead_(getSheet_(SHEET_NAME), lead);
+    writeLead_(getSheet_(tab), lead);
     return json_({ ok: true });
   } catch (err) {
     return json_({ ok: false, error: String(err) });
@@ -432,9 +444,9 @@ function recordPayment_(lead, payment) {
   }
 }
 
-/** True if this lead is in either tab — used to block duplicate rows. */
-function alreadyRecorded_(id) {
-  return hasLeadId_(getSheet_(SHEET_NAME), id) ||
+/** True if this lead is in its own tab or in Paid — blocks duplicate rows. */
+function alreadyRecorded_(id, tab) {
+  return hasLeadId_(getSheet_(tab || SHEET_NAME), id) ||
          hasLeadId_(getSheet_(PAID_SHEET_NAME), id);
 }
 

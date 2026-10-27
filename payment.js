@@ -13,11 +13,21 @@
  */
 
 /**
- * Turn this off to run a session without charging — the form then goes
- * straight to the confirmation page, as it did before payment existed.
- * Leave it on while the page advertises a price.
+ * Settings that differ between landing pages.
+ *
+ * The paid summit page needs none of these — the defaults are its own. A free
+ * page sets window.SUMMIT_PAGE in an inline script before this file loads, and
+ * so runs the same code with no payment, its own confirmation page, and its
+ * own tab in the sheet.
  */
-const PAYMENT_ENABLED = true;
+const PAGE = Object.assign({
+  /** false skips checkout entirely and never gates the confirmation. */
+  paid: true,
+  /** Where the form goes once the registration is recorded. */
+  thankYou: "thank-you.html",
+  /** Sheet tab for these leads. Empty means the default "Leads" tab. */
+  sheetTab: ""
+}, (typeof window !== "undefined" && window.SUMMIT_PAGE) || {});
 
 /** Must match ORDER_AMOUNT in google-apps-script.gs and the price on the page. */
 const PAYMENT_AMOUNT = 49;

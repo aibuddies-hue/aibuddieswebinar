@@ -66,7 +66,8 @@ function checkPayment() {
     return true;
   };
 
-  if (typeof PAYMENT_ENABLED !== "undefined" && !PAYMENT_ENABLED) return Promise.resolve(reveal());
+  // A free page has nothing to verify, so it is never gated.
+  if (typeof PAGE !== "undefined" && !PAGE.paid) return Promise.resolve(reveal());
 
   const lead = readStoredLead();
   const orderId = currentOrderId();
