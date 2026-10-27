@@ -536,7 +536,12 @@ function handleRegistration(event) {
     email: email,
     segment: segment,
     summitDate: SUMMIT_DATE_FULL,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    // Lets the free page keep its registrations in their own tab rather than
+    // mixed in with people who are meant to pay.
+    sheetTab: PAGE.sheetTab,
+    // "PENDING" would be wrong on a free seat — nothing is owed.
+    paymentStatus: PAGE.paid ? "PENDING" : "FREE"
   }, readAttribution());
 
   // Written down before anything is sent, so a failed request or a closed
@@ -547,8 +552,8 @@ function handleRegistration(event) {
   localStorage.setItem("creator_summit_lead", JSON.stringify(leadData));
   localStorage.setItem("has_registered", "true");
 
-  if (!PAYMENT_ENABLED) {
-    window.location.href = "thank-you.html";
+  if (!PAGE.paid) {
+    window.location.href = PAGE.thankYou;
     return;
   }
 

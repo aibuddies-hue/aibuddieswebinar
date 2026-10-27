@@ -30,7 +30,13 @@ const SUMMIT_DATE_OVERRIDE = "2026-10-04";
 /** Start time and length, in IST. */
 const SUMMIT_HOUR_IST = 11;
 const SUMMIT_MINUTE_IST = 0;
-const SUMMIT_DURATION_HOURS = 3;
+/**
+ * How long the session runs. A page can shorten it — the free workshop is
+ * two hours — by setting durationHours in window.SUMMIT_PAGE, which also
+ * moves the end time on the calendar invite.
+ */
+const SUMMIT_DURATION_HOURS =
+  (typeof window !== "undefined" && window.SUMMIT_PAGE && window.SUMMIT_PAGE.durationHours) || 3;
 
 /* ==========================================
    WORKING IT OUT

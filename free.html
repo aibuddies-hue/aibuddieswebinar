@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>AI Creator Summit — Free | AI Buddies</title>
+  <meta name="description" content="In 2 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. Free, with a certificate on completion.">
+  <meta name="theme-color" content="#0072ff">
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '3042537795953129');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=3042537795953129&ev=PageView&noscript=1"/></noscript>
+  <!-- End Meta Pixel -->
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <link rel="canonical" href="https://summit.aibuddiess.com/free.html">
+
+  <!-- Social share preview (WhatsApp / Facebook / Instagram DM / X).
+       These must be absolute URLs — scrapers do not resolve a relative path,
+       which is why a shared link shows no preview image without them. If the
+       site ever moves, every https://summit.aibuddiess.com here has to move
+       with it. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="AI Buddies">
+  <meta property="og:url" content="https://summit.aibuddiess.com/free.html">
+  <meta property="og:title" content="AI Creator Summit — Free | AI Buddies">
+  <meta property="og:description" content="In 2 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. Free, with a certificate on completion.">
+  <meta property="og:image" content="https://summit.aibuddiess.com/assets/og-image.jpg">
+  <meta property="og:image:secure_url" content="https://summit.aibuddiess.com/assets/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="AI Creator Summit — a free 2-hour live build session with Rudra Sahu">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Creator Summit — Free | AI Buddies">
+  <meta name="twitter:description" content="In 2 hours, stop using AI and start operating it. Build ads, video, avatars, jingles, voice agents, and n8n automations live alongside Rudra Sahu. Free, with a certificate on completion.">
+  <meta name="twitter:image" content="https://summit.aibuddiess.com/assets/og-image.jpg">
+
+  <!-- Fonts: only the weights the stylesheet actually uses -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="theme-claude.css?v=5">
+  <link rel="preload" as="image" href="assets/ai_video_thumbnail.webp" fetchpriority="high">
+  <script>document.documentElement.classList.add("js-reveal");</script>
+</head>
+<body class="light-theme theme-claude">
+
+  <!-- SECTION 0 — ANNOUNCEMENT BAR (Sticky) -->
+  <div class="announcement-bar" id="announcement-bar">
+    <div class="bar-content">
+      <span class="live-indicator"><span class="dot"></span>LIVE</span>
+      <span class="bar-text"><span class="js-date-short">Sunday 4 October</span>, 11:00 AM &middot; Only <strong id="bar-seats">93</strong> seats left &middot; Free entry</span>
+      <button class="bar-btn" onclick="openModal()">Reserve My Seat</button>
+    </div>
+  </div>
+
+  <!-- SECTION 1 — HERO -->
+  <section class="hero-section" id="hero">
+    <div class="container hero-container">
+      <div class="hero-tag">🔴 FOR CREATORS, FREELANCERS &amp; FOUNDERS &middot; LIVE SUNDAY &middot; FREE</div>
+      <h1 class="hero-title">In 2 hours you won't learn about AI. <span class="gold-gradient">You'll build seven systems with it.</span></h1>
+      <p class="hero-subhead">
+        An ad creative. An AI video. Your own AI avatar. A brand jingle. A voice agent that places a real phone call. An n8n automation that ties it all together. And the AI brain running all seven &mdash; built live on screen, in Hinglish, with zero coding. You&rsquo;ll be building alongside, not taking notes.
+      </p>
+      
+      <!-- Hero VSL Video
+           Click-to-play facade: the poster paints instantly and nothing is
+           downloaded until the visitor actually presses play. Set the source
+           in ONE place - VSL_VIDEO_SRC at the top of landing.js. -->
+      <div class="hero-vsl-container">
+        <div class="vsl-facade" id="vsl-facade" role="button" tabindex="0"
+             aria-label="Play the AI Creator Summit intro video">
+          <img src="assets/ai_video_thumbnail.webp" alt="AI Creator Summit intro video"
+               class="vsl-poster" width="1024" height="1024" fetchpriority="high" decoding="async">
+          <div class="vsl-play-btn"><span class="vsl-play-triangle"></span></div>
+          <span class="vsl-badge">Watch what gets built</span>
+        </div>
+        <div class="vsl-unavailable" id="vsl-unavailable" hidden>
+          <p>The intro video can't load right now &mdash; but the summit itself is what matters.</p>
+          <button class="primary-btn secondary-btn vsl-fallback-cta" onclick="openModal()">
+            Reserve My Free Seat
+          </button>
+        </div>
+      </div>
+      
+
+      <!-- Live countdown to the summit -->
+      <div class="countdown" id="countdown" data-reveal>
+        <span class="countdown-label">Registration closes in</span>
+        <div class="countdown-units">
+          <div class="cd-unit"><span class="cd-num" id="cd-days">--</span><span class="cd-cap">Days</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-hours">--</span><span class="cd-cap">Hrs</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-mins">--</span><span class="cd-cap">Min</span></div>
+          <span class="cd-sep">:</span>
+          <div class="cd-unit"><span class="cd-num" id="cd-secs">--</span><span class="cd-cap">Sec</span></div>
+        </div>
+      </div>
+
+      <!-- Mobile Hero CTA & Info Block (strictly above-the-fold design) -->
+      <div class="hero-cta-wrapper">
+        <button class="primary-btn pulse-glow" onclick="openModal()">
+          <span class="btn-text">Reserve My Free Seat</span>
+          <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+        </button>
+      </div>
+
+      <div class="hero-bullets" data-reveal>
+        <div class="bullet-item">
+          <span class="icon">✅</span>
+          <span class="text">The exact skills brands pay <strong>₹15,000–₹50,000</strong> for</span>
+        </div>
+        <div class="bullet-item">
+          <span class="icon">✅</span>
+          <span class="text">Zero coding. Zero technical background required.</span>
+        </div>
+        <div class="bullet-item">
+          <span class="icon">✅</span>
+          <span class="text">Nothing hidden — you watch the full build, start to finish</span>
+        </div>
+        <div class="bullet-item">
+          <span class="icon">✅</span>
+          <span class="text">You leave with the files: prompts, workflows, scripts — on WhatsApp</span>
+        </div>
+      </div>
+
+      <!-- Logistics Strip -->
+      <div class="logistics-strip" data-reveal>
+        <div class="log-item">📅 <span class="js-date-compact-year">Sun, 4 Oct 2026</span></div>
+        <div class="log-item">🕚 11:00 AM IST</div>
+        <div class="log-item">⏱️ 120 Minutes</div>
+        <div class="log-item"><span class="red-dot"></span> 100% Live</div>
+        <div class="log-item">💻 Zoom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 — TRUST BAR -->
+  <section class="trust-bar-section">
+    <div class="container">
+      <p class="trust-title" data-reveal>Everything taught here is running right now, for paying clients.</p>
+      <div class="stats-grid">
+        <div class="stat-card" data-reveal>
+          <div class="stat-num">₹10 Cr+</div>
+          <div class="stat-label">Ad spend managed on Meta</div>
+        </div>
+        <div class="stat-card" data-reveal>
+          <div class="stat-num">182+</div>
+          <div class="stat-label">Brands scaled via Bluhawk</div>
+        </div>
+        <div class="stat-card" data-reveal>
+          <div class="stat-num">53+</div>
+          <div class="stat-label">Automations live in client accounts</div>
+        </div>
+        <div class="stat-card" data-reveal>
+          <div class="stat-num">7</div>
+          <div class="stat-label">Voice agents in production</div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- SECTION 3 — THE PROBLEM -->
+  <section class="problem-section" id="the-problem">
+    <div class="container">
+      <div class="section-tag" data-reveal>THE PROBLEM</div>
+      <h2 class="section-title" data-reveal>You've watched forty videos about AI.<br><span class="highlight-red">How many things have you actually built?</span></h2>
+      
+      <div class="problem-grid">
+        <div class="problem-card" data-reveal>
+          <div class="prob-num">01</div>
+          <h3>Theory Overload</h3>
+          <p>Reels, YouTube, webinars — everyone tells you what AI can do. Nobody has run the entire job in front of you, start to finish, with nothing skipped.</p>
+        </div>
+        <div class="problem-card" data-reveal>
+          <div class="prob-num">02</div>
+          <h3>Tool Scatter</h3>
+          <p>Every video sells one isolated tool. One for images. One for video. One for automation. Nobody connects them. And clients don't pay for tool knowledge — they pay for finished output.</p>
+        </div>
+        <div class="problem-card" data-reveal>
+          <div class="prob-num">03</div>
+          <h3>Passive Format</h3>
+          <p>You don't need another lecture. You need to watch someone build the thing, then build it yourself while they're still on the call.</p>
+        </div>
+      </div>
+
+      <div class="pull-quote" data-reveal>
+        <blockquote>
+          "Your competitor is delivering the same work 10x faster with AI — and your clients are quietly moving there."
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — THE HERO MOMENT -->
+  <section class="hero-moment-section dark-section" id="hero-moment">
+    <div class="container">
+      <div class="section-tag gold" data-reveal>THE HERO MOMENT</div>
+      <h2 class="section-title" data-reveal>Midway through the session,<br><span class="gold-gradient">an AI will call your phone.</span></h2>
+      
+      <div class="hero-moment-content">
+        <div class="hero-moment-text" data-reveal>
+          <p>It will hold a conversation with you in Hinglish. It will respond to what you actually say.</p>
+          <p class="highlight-p"><strong>Live. Not a recording. Not a demo video.</strong> Your number, your phone, in front of 200 people.</p>
+          <p>This is the same voice agent stack currently confirming orders for a D2C beauty brand and handling after-hours patient calls for a fertility clinic.</p>
+          <p class="cta-mini-text">Everyone else says "AI can make phone calls." Here, you'll be the one picking up.</p>
+          
+          <button class="primary-btn secondary-btn" onclick="openModal()">
+            Reserve My Seat — See This Live
+          </button>
+        </div>
+        
+        <div class="hero-moment-visual" data-reveal>
+          <div class="waveform-container">
+            <div class="waveform-header">
+              <span class="call-status"><span class="green-dot animate-pulse"></span> HINGLISH AI CALL</span>
+              <span class="call-time" id="waveform-timer">0:15</span>
+            </div>
+            
+            <!-- Sleek interactive wave player -->
+            <div class="waveform-visual-wrapper">
+              <img src="assets/ai_voice_waveform.webp" alt="AI Phone Call Waveform" class="waveform-img" loading="lazy" decoding="async" width="1024" height="1024">
+              <div class="waveform-play-overlay" onclick="toggleWaveformSimulation()">
+                <div class="play-icon-shape" id="waveform-play-btn"></div>
+              </div>
+              <div class="waveform-playback-glowing-bar" id="waveform-playback-bar"></div>
+            </div>
+            
+            <div class="waveform-footer">
+              <div class="wave-prompt-box">
+                <span class="label">AI Agent Prompt:</span>
+                <span class="val">"Handle the customer call end to end in friendly Hinglish..."</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 13 — PROOF STRIP -->
+  <section class="proof-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>TRANSPARENCY</div>
+      <h2 class="section-title" data-reveal>These aren't course screenshots.<br><span class="gold-gradient">They're live client accounts.</span></h2>
+      
+      <div class="proof-gallery">
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_1.webp" alt="Sales proof 1" class="proof-item-img" decoding="async" width="898" height="1022">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_2.webp" alt="Sales proof 2" class="proof-item-img" decoding="async" width="900" height="1013">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_3.webp" alt="Sales proof 3" class="proof-item-img" loading="lazy" decoding="async" width="882" height="998">
+        </div>
+        <div class="proof-item proof-item-with-css-border proof-item-clipped" data-reveal>
+          <img src="assets/proof_sales_4.webp" alt="Sales proof 4" class="proof-item-img" loading="lazy" decoding="async" width="900" height="980">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_voice_agent_1.webp" alt="Voice agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="485">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_voice_agent_webinar.webp" alt="Webinar confirmation Voice Agent call log" class="proof-item-img" loading="lazy" decoding="async" width="900" height="487">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_n8n_canvas_1.webp" alt="n8n content engine canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="460">
+        </div>
+        <div class="proof-item proof-item-with-css-border" data-reveal>
+          <img src="assets/proof_n8n_canvas_2.webp" alt="n8n WhatsApp reminder sequence canvas" class="proof-item-img" loading="lazy" decoding="async" width="900" height="461">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 14 — TESTIMONIALS -->
+  <section class="testimonials-section">
+    <div class="container">
+      <div class="section-tag gold" data-reveal>TESTIMONIALS</div>
+      <h2 class="section-title" data-reveal>Feedback from clients and past attendees.</h2>
+      
+      <div class="testimonials-tabs" data-reveal>
+        <button class="tab-btn active" id="tab-emotion-btn" onclick="switchTestimonials('emotion')">Attendee Feedback</button>
+        <button class="tab-btn" id="tab-results-btn" onclick="switchTestimonials('results')">Results & Numbers</button>
+      </div>
+
+      <!-- Attendee Feedback Tab -->
+      <div class="testimonials-wrapper active-tab" id="tab-emotion">
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">SK</div>
+              <div>
+                <h3>Suhail Khan</h3>
+                <p>Freelancer &bull; Bhopal</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"Before the session, I was just reading prompts off Twitter. Honestly, watching Rudra hook up n8n and watch a live call happen in 20 minutes was mindblowing. That moment made me realize this is actually doable. Built my first automation the next day."</p>
+              <span class="time-stamp">11:42 PM ✓✓</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">AG</div>
+              <div>
+                <h3>Anjali Gupta</h3>
+                <p>D2C Founder &bull; Indore</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"I was paying an agency 20k a month for basic ad creatives. In the summit, we literally made a better version in 5 mins using the product photo script. Moving designer tasks in house now."</p>
+              <span class="time-stamp">09:15 AM ✓✓</span>
+            </div>
+          </div>
+
+          <div class="testimonial-card bubble" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder">RV</div>
+              <div>
+                <h3>Rohan Verma</h3>
+                <p>Agency Owner &bull; Mumbai</p>
+              </div>
+            </div>
+            <div class="whatsapp-bubble-sim">
+              <p class="msg">"Zero slides concept is real. Usually webinars are pitch-heavy lectures, but here we actually sat and coded workflows alongside. Most practical 2 hours I spent this year."</p>
+              <span class="time-stamp">04:30 PM ✓✓</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Results Tab -->
+      <div class="testimonials-wrapper" id="tab-results">
+        <div class="testimonials-grid">
+          
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">DK</div>
+              <div>
+                <h3>Devendra Kharat</h3>
+                <p>Solo Agency &bull; Pune</p>
+              </div>
+            </div>
+            <div class="result-badge">Landed ₹35k Client</div>
+            <p class="quote">"Using the agency package pitch taught in Act 3, I approached a local e-commerce store with an AI voice agent proposal. Replaced their manual telecaller within a week. Sticking to this service now."</p>
+          </div>
+
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">PS</div>
+              <div>
+                <h3>Pooja Sharma</h3>
+                <p>Creator &bull; Jaipur</p>
+              </div>
+            </div>
+            <div class="result-badge">Saved 12+ Hours/Week</div>
+            <p class="quote">"My content production timeline crashed from 15 hours a week to under 3 hours. Using my AI avatar to deliver simple script drafts saves me massive studio/recording hours."</p>
+          </div>
+
+          <div class="testimonial-card results" data-reveal>
+            <div class="testimonial-header">
+              <div class="user-avatar-placeholder bg-gold">AK</div>
+              <div>
+                <h3>Amit Kumar</h3>
+                <p>Business Owner &bull; Delhi</p>
+              </div>
+            </div>
+            <div class="result-badge">Meta ROI Up by 38%</div>
+            <p class="quote">"We scaled our D2C spend by testing 50+ AI variations generated using the midjourney assets layout we built. CAC went down by 30% because ad fatigue is no longer a blocker."</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- SECTION 5 — WHAT YOU WALK AWAY WITH -->
+  <section class="walk-away-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>THE DELIVERABLES</div>
+      <h2 class="section-title" data-reveal>Two hours later you'll own these.<br><span class="gold-gradient">Not notes — the assets themselves.</span></h2>
+      
+      <div class="deliverables-grid">
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">🖼️</div>
+          <h3>Ad-Ready Creative</h3>
+          <p>Built from your own product photo, without paying a designer.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">🎬</div>
+          <h3>Cinematic AI Ad Video</h3>
+          <p>Product videos and ad films with no camera, actor, or studio.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">🧑💼</div>
+          <h3>Your AI Avatar</h3>
+          <p>Looks and sounds like you, so you never have to face the camera.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">🎵</div>
+          <h3>Original Brand Jingle</h3>
+          <p>Reel background score and ads music, made in about five minutes.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">📞</div>
+          <h3>Working Voice Agent</h3>
+          <p>A configured voice agent ready to place real phone calls.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">⚙️</div>
+          <h3>Live n8n Automation</h3>
+          <p>New lead fires WhatsApp, inserts Google Sheet entry, and schedules follow-up.</p>
+        </div>
+        <div class="deliverable-card" data-reveal>
+          <div class="card-icon">🧠</div>
+          <h3>Claude AI Strategy Brain</h3>
+          <p>Copywriting blueprints, Hinglish scripts, and strategy prompts customized for your business.</p>
+        </div>
+      </div>
+      
+      <div class="deliverables-footer" data-reveal>
+        <p>🎉 Plus the files delivered directly on your WhatsApp: prompt pack, n8n workflow files, and voice agent scripts.</p>
+        <p class="sub-text">The session ends. The work starts the same day.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
+  <!-- SECTION 6 — THE 7 MODULES -->
+  <section class="modules-section" id="curriculum">
+    <div class="container">
+      <div class="section-tag gold" data-reveal>CURRICULUM</div>
+      <h2 class="section-title" data-reveal>Seven tools. Every one of them is a <span class="gold-gradient">billable service.</span></h2>
+      
+      <div class="modules-list">
+        
+        <!-- Module 01 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">01</div>
+            <div class="module-title-box">
+              <h3>AD-Ready AI Images</h3>
+              <p>Scroll-stopping ad images — the kind brands pay agencies lakhs to produce. You'll make them in minutes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 02 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">02</div>
+            <div class="module-title-box">
+              <h3>AD-Ready AI Videos</h3>
+              <p>The same thing in motion. Product videos and ad films with no camera, no studio, no shoot day.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 03 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">03</div>
+            <div class="module-title-box">
+              <h3>Your AI Twin</h3>
+              <p>Your own avatar that looks like you and speaks like you. You stop needing to be on camera, and content still goes out daily.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 04 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">04</div>
+            <div class="module-title-box">
+              <h3>24×7 AI Callers</h3>
+              <p>The most underrated one. An agent that answers your business calls, talks to customers and confirms orders — 24 hours a day, no salary.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 05 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">05</div>
+            <div class="module-title-box">
+              <h3>Set-and-Forget Automations</h3>
+              <p>Your automation engine. Leads, WhatsApp, follow-ups, reports — build the system once and it runs on its own.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 06 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">06</div>
+            <div class="module-title-box">
+              <h3>Your Original Audio Engine</h3>
+              <p>Music and audio. Background tracks for ads, jingles, reel audio — all original, all yours.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Module 07 -->
+        <div class="module-item" data-reveal>
+          <div class="module-header">
+            <div class="module-num">07</div>
+            <div class="module-title-box">
+              <h3>The Master Tool</h3>
+              <p>The brain running all of it. Copywriting, scripts, strategy, code. Get this one right and the other six move 10x faster.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
+  <!-- SECTION 7 — THE AGENDA -->
+  <section class="agenda-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>THE TIMELINE</div>
+      <h2 class="section-title" data-reveal>Two hours, three acts.<br><span class="gold-gradient">Not one minute of theory.</span></h2>
+      
+      <div class="agenda-grid">
+        <div class="agenda-card" data-reveal>
+          <div class="agenda-header">
+            <span class="act-tag">ACT 1</span>
+            <h3>CREATE</h3>
+            <span class="time-tag">~90 mins</span>
+          </div>
+          <p>Ad creative, AI video, avatar, jingle. You finish this act holding four completed assets, built live step-by-step.</p>
+        </div>
+        <div class="agenda-card" data-reveal>
+          <div class="agenda-header">
+            <span class="act-tag">ACT 2</span>
+            <h3>AUTOMATE</h3>
+            <span class="time-tag">~60 mins</span>
+          </div>
+          <p>Voice agents and n8n. The live phone call happens here. Watch the full chain run: lead lands, WhatsApp fires, follow-up goes out — completely untouched.</p>
+        </div>
+        <div class="agenda-card" data-reveal>
+          <div class="agenda-header">
+            <span class="act-tag">ACT 3</span>
+            <h3>MONETISE</h3>
+            <span class="time-tag">~30 mins</span>
+          </div>
+          <p>How these skills become a service. Exactly what to charge, how to package it, and where your first client comes from. Real market rates with actual numbers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
+  <!-- SECTION 8 & 9 — TARGET AUDIENCE / SEGMENTS -->
+  <section class="who-is-it-for-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>AUDIENCE PROFILE</div>
+      <h2 class="section-title" data-reveal>Who this is for. And who <span class="highlight-red">this is not for.</span></h2>
+      
+      <div class="audience-wrapper">
+        
+        <div class="for-column" data-reveal>
+          <h3>✅ Who this is for:</h3>
+          <div class="for-grid">
+            <div class="audience-card">
+              <h4>Freelancers & Agency Owners</h4>
+              <p>A client job takes you four days right now. After this it ships in forty minutes — which means more clients in the same week.</p>
+            </div>
+            <div class="audience-card">
+              <h4>Small Business & D2C Owners</h4>
+              <p>Designer, editor, voice artist, tele-caller — all of it comes in-house. You make the creative; the agent makes the calls.</p>
+            </div>
+            <div class="audience-card">
+              <h4>Content Creators</h4>
+              <p>You need to post daily but production eats the day. Thumbnails, videos, avatars, jingles — produced in bulk, in one sitting.</p>
+            </div>
+            <div class="audience-card">
+              <h4>Working Professionals</h4>
+              <p>You leave with a skill the market actively outsources. That's a real weekend income line, not a resume bullet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="not-for-column" data-reveal>
+          <h3>❌ Who this is NOT for:</h3>
+          <ul class="not-for-list">
+            <li>
+              <span class="bullet-x">❌</span>
+              <p>If you're registering only because it costs nothing — this isn't for you.</p>
+            </li>
+            <li>
+              <span class="bullet-x">❌</span>
+              <p>If you can't block the full 120 minutes — this isn't for you. There is no recording.</p>
+            </li>
+            <li>
+              <span class="bullet-x">❌</span>
+              <p>If you want a certificate for your resume — we're teaching the work, not printing paper.</p>
+            </li>
+            <li>
+              <span class="bullet-x">❌</span>
+              <p>If you plan to take notes and implement none of it — please leave the seat for someone who will.</p>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9b — CERTIFICATE -->
+  <section class="cert-section">
+    <div class="container">
+      <div class="cert-card" data-reveal>
+
+        <div class="cert-copy">
+          <div class="section-tag">ON COMPLETION</div>
+          <h2>You leave with the work. <span class="gold-gradient">And something to show for it.</span></h2>
+          <p>
+            Stay for the full 120 minutes and build alongside, and a Certificate of Completion reaches you on WhatsApp within 48 hours &mdash; issued in your name by AI Buddies.
+          </p>
+          <ul class="cert-list">
+            <li><span class="tick">&#10003;</span><span>Your name, the date, and exactly what was built &mdash; not a blank attendance slip.</span></li>
+            <li><span class="tick">&#10003;</span><span>A verification code on it, so anyone who asks can check it is real.</span></li>
+            <li><span class="tick">&#10003;</span><span>Sized for LinkedIn and for a PDF you can attach to a proposal.</span></li>
+            <li><span class="tick">&#10003;</span><span>Earned by finishing, not by showing up &mdash; which is the only reason it means anything.</span></li>
+          </ul>
+        </div>
+
+        <div class="cert-visual" aria-hidden="true">
+          <p class="cert-kicker">Certificate of Completion</p>
+          <div class="cert-seal">&#9733;</div>
+          <p class="cert-name">Your Name Here</p>
+          <p class="cert-for">
+            completed the AI Creator Summit &mdash; 120 minutes live, seven systems built
+          </p>
+          <p class="cert-sign">AI Buddies &middot; <span class="js-date-compact-year">Sun, 4 Oct 2026</span></p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 10 — WHAT IT COSTS -->
+  <section class="price-framing-section">
+    <div class="container">
+      <div class="price-box" data-reveal>
+        <h2 class="section-title" data-reveal>It's free. <span class="highlight-red">It isn't casual.</span></h2>
+        <p class="price-desc">
+          There are 200 seats and there is no recording. If you don't show up on <span class="js-date-daymonth">4 October</span> at 11:00 AM, you don't get this.
+        </p>
+        <p class="price-desc">
+          We're not asking for money. We're asking for 120 uninterrupted minutes — because you'll be building alongside, not watching. That is the harder thing to give, and it is the only thing that decides what you walk away with.
+        </p>
+        <div class="price-accent">
+          <div class="price-value">&#8377;0</div>
+          <div class="price-label">120 uninterrupted minutes. Give them and you'll leave with seven finished assets and a certificate in your name.</div>
+        </div>
+        <button class="primary-btn price-cta" onclick="openModal()">
+          Reserve My Free Seat
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 11 — WHY THIS IS DIFFERENT -->
+  <section class="difference-section">
+    <div class="container">
+      <div class="section-tag" data-reveal>THE COMPARISON</div>
+      <h2 class="section-title" data-reveal>How is this different from a <span class="highlight-red">typical webinar?</span></h2>
+      
+      <!-- Stacks into cards on mobile, grid on desktop -->
+      <div class="comparison-container">
+        
+        <div class="comparison-card typical" data-reveal>
+          <h3>The Typical AI Webinar</h3>
+          <ul>
+            <li>The host's only product is the course itself</li>
+            <li>Screenshots on slides</li>
+            <li>"AI can make phone calls" (Passive claim)</li>
+            <li>Six disconnected tools discussed</li>
+            <li>"Save time with ChatGPT" (Basic productivity tips)</li>
+            <li>Global examples, US pricing</li>
+            <li>You leave with notes</li>
+          </ul>
+        </div>
+
+        <div class="comparison-card summit active-card" data-reveal>
+          <div class="summit-badge">RECOMMENDED</div>
+          <h3>AI Creator Summit</h3>
+          <ul>
+            <li>The host's systems run live for paying clients right now</li>
+            <li>Live screen share, zero slides</li>
+            <li>An AI calls your phone, live, during the session</li>
+            <li>One campaign carried end to end through all seven</li>
+            <li>Every module is a service the market pays for</li>
+            <li>Indian clients, Indian pricing, Indian use cases</li>
+            <li>You leave with files</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 12 — MEET THE HOST -->
+  <section class="host-section" id="meet-host">
+    <div class="container host-container">
+      <div class="host-image-wrapper" data-reveal>
+        <img src="assets/Rudra.webp" alt="Rudra Sahu Portrait" class="host-img" loading="lazy" decoding="async" width="660" height="855">
+      </div>
+      
+      <div class="host-info" data-reveal>
+        <div class="section-tag gold" data-reveal>MEET YOUR HOST</div>
+        <h2 class="host-title">I don't talk about AI. I build with it — systems that are live right now, for paying clients.</h2>
+        <p class="host-name">Rudra Sahu</p>
+        <p class="host-designation">Founder- AI Buddies, Bluhawk</p>
+        
+        <div class="host-bio">
+          <p>I build these systems for clients every day: voice agents, ad creatives, automations.</p>
+          <p>At some point one thing became obvious. Work I invoice at <strong>₹40,000</strong> takes about 25 minutes with the right stack. The gap was never knowledge. The gap was that nobody had ever shown the entire process live, start to finish, with nothing hidden. That's why this summit exists.</p>
+        </div>
+
+        <div class="host-stats">
+          <div class="host-stat-item">
+            <strong>6 Years</strong>
+            <span>Performance Marketing</span>
+          </div>
+          <div class="host-stat-item">
+            <strong>₹10 Cr+</strong>
+            <span>Managed on Meta</span>
+          </div>
+          <div class="host-stat-item">
+            <strong>182+</strong>
+            <span>Brands Scaled</span>
+          </div>
+        </div>
+
+        <div class="host-badge">
+          🏆 1PD Marketing Strategist of the Year, 2025
+        </div>
+
+        <p class="host-clients-list">
+          <strong>Clients across:</strong> D2C e-commerce, fertility clinics, real estate, coaching, and pageant companies.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Inline conversion point -->
+  <div class="section-cta" data-reveal>
+    <div class="container">
+      <button class="primary-btn section-cta-btn" onclick="openModal()">
+        <span class="btn-text">Reserve My Free Seat</span>
+        <span class="btn-subtext">Only <span class="seats-count">93</span> seats left &middot; No recording &middot; Confirmation in 30s</span>
+      </button>
+    </div>
+  </div>
+  <!-- SECTION 15 — WHAT YOU GET AFTER -->
+  <section class="bonuses-section">
+    <div class="container">
+      <div class="section-tag gold" data-reveal>THE BONUS STACK</div>
+      <h2 class="section-title" data-reveal>Sent to every attendee on WhatsApp<br><span class="gold-gradient">when the session ends.</span></h2>
+      
+      <div class="bonuses-list-grid">
+        <div class="bonus-row" data-reveal>
+          <div class="bonus-icon">⚡</div>
+          <div class="bonus-details">
+            <h3>Creator Prompt Pack</h3>
+            <p>Direct copy-paste prompt structures for high-converting ads, AI videos, avatars, and Suno audio tracks.</p>
+          </div>
+        </div>
+
+        <div class="bonus-row" data-reveal>
+          <div class="bonus-icon">⚡</div>
+          <div class="bonus-details">
+            <h3>n8n Workflow Files</h3>
+            <p>The actual JSON canvas templates. Click import, enter your API keys, and run the CRM automation instantly.</p>
+          </div>
+        </div>
+
+        <div class="bonus-row" data-reveal>
+          <div class="bonus-icon">⚡</div>
+          <div class="bonus-details">
+            <h3>Voice Agent Script Templates</h3>
+            <p>Hinglish and Hindi instructions running in production for beauty clinics and e-commerce stores right now.</p>
+          </div>
+        </div>
+
+        <div class="bonus-row" data-reveal>
+          <div class="bonus-icon">⚡</div>
+          <div class="bonus-details">
+            <h3>Post-Session WhatsApp Group</h3>
+            <p>Immediate entry into the community chat to clear implementation doubts directly with Rudra Sahu.</p>
+          </div>
+        </div>
+      </div>
+      
+      <p class="bonus-compliance-note" data-reveal>Deliverables are shared purely for active builder implementation. No false values associated.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 16 — SCARCITY BANNER -->
+  <section class="scarcity-banner dark-section">
+    <div class="container">
+      <div class="scarcity-content" data-reveal>
+        <div class="scarcity-left">
+          <div class="seats-counter-badge">
+            🚨 ONLY <span id="seats-left-banner">93</span> SEATS LEFT
+          </div>
+          <p>Once 200 registrations are complete, the Zoom batch locks. There is no recording.</p>
+          <div class="countdown compact" id="countdown-scarcity">
+            <div class="countdown-units">
+              <div class="cd-unit"><span class="cd-num" id="cd2-days">--</span><span class="cd-cap">Days</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-hours">--</span><span class="cd-cap">Hrs</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-mins">--</span><span class="cd-cap">Min</span></div>
+              <span class="cd-sep">:</span>
+              <div class="cd-unit"><span class="cd-num" id="cd2-secs">--</span><span class="cd-cap">Sec</span></div>
+            </div>
+          </div>
+
+        </div>
+        <button class="primary-btn pulse-glow" onclick="openModal()">
+          Secure My Free Seat
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 17 — FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="section-tag" data-reveal>QUESTIONS?</div>
+      <h2 class="section-title" data-reveal>Frequently Asked Questions</h2>
+      
+      <div class="faq-accordion">
+        
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>When is it?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p><span class="js-date-full">Sunday 4 October, 2026</span> at 11:00 AM IST. The Zoom link reaches your WhatsApp the moment you register.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is it live or recorded?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Completely live. Screen share, real-time Q&A, and the live AI phone call happen in real time.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Will I get a recording?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. This runs once, live. That's deliberate — the people who show up get the value, implement, and ask questions.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>I don't know how to code. Will I keep up?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Zero coding and zero technical background are required. We show everything from absolute scratch.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What language is it in?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Hinglish — explained the way a friend explains it in simple conversational terms, not a formal lecturer.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is it really free?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. No card, no fee, nothing to pay at the door. What we do ask is that you only take a seat if you will actually be there for the full 120 minutes &mdash; there is no recording, and a seat you abandon is one somebody else wanted.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Is there a certificate?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>No. You'll leave having built working assets, not collecting paper.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What happens after I register?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Instant WhatsApp confirmation, a community group invite, and reminders before the session. If nothing arrives, message WhatsApp Support.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>What should I have ready?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>A laptop (a phone works, but a laptop is highly recommended), one product photo or business description, and three clean, uninterrupted hours.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-reveal>
+          <button class="faq-question" onclick="toggleFaq(this)">
+            <span>Can I ask questions afterwards?</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <p>Yes, in the post-session WhatsApp group, you'll be able to clear doubts directly with the host.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 18 — FINAL CLOSE -->
+  <section class="final-close-section dark-section">
+    <div class="container">
+      <div class="price-box final-box" data-reveal>
+        <h2 class="section-title" data-reveal>There's one thing left to do.</h2>
+        <p class="final-desc">
+          You've scrolled this far, which means you already know AI works. You don't need convincing. You need to watch the whole thing happen once, in front of you, with nothing skipped.
+        </p>
+        <p class="final-desc">
+          Two hours. Seven tools. Seven finished assets. And an AI that calls your phone.
+        </p>
+        <p class="date-rem"><span class="js-date-short">Sunday 4 October</span> &bull; 11:00 AM &bull; Once.</p>
+        <button class="primary-btn pulse-glow" onclick="openModal()">
+          Reserve My Free Seat
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 19 — FOOTER -->
+  <footer class="footer-section">
+    <div class="container">
+      <p class="facebook-disclaimer">
+        This site is not a part of the Facebook/Meta website or Meta Platforms Inc. This site is NOT endorsed by Meta in any way. FACEBOOK is a trademark of Meta Platforms, Inc.
+      </p>
+      <p class="earnings-disclaimer">
+        Earnings Disclaimer: Market rates referenced on this page are industry averages. Nothing here is an income guarantee. Results depend on individual effort, skill, and market conditions.
+      </p>
+      
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+        <a href="shipping.html">Delivery</a>
+        <a href="contact.html">Contact Us</a>
+      </div>
+      
+      <p class="copy-text">&copy; 2026 AI Buddies. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- REGISTRATION MODAL (2-step: fewer fields visible at once = higher completion) -->
+  <div class="modal-overlay" id="registration-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeModal()" aria-label="Close registration">&times;</button>
+
+      <div class="modal-header">
+        <h3 id="modal-title">Reserve Your Free Seat</h3>
+        <p>Complete registration to confirm your slot (takes 20 seconds)</p>
+      </div>
+
+      <div class="modal-progress" aria-hidden="true">
+        <div class="modal-progress-fill" id="modal-progress-fill"></div>
+      </div>
+      <p class="modal-step-label">Step <span id="modal-step-num">1</span> of 2</p>
+
+      <form id="lead-form" onsubmit="handleRegistration(event)" novalidate>
+
+        <!-- STEP 1 -->
+        <div class="form-step active-step" data-step="1">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" autocomplete="name" required placeholder="e.g. Rahul Sharma">
+            <span class="field-error" id="err-name"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">WhatsApp Number</label>
+            <div class="phone-input-wrapper">
+              <span class="country-code">+91</span>
+              <input type="tel" id="phone" name="phone" inputmode="numeric" autocomplete="tel-national"
+                     maxlength="10" required pattern="[6-9][0-9]{9}" placeholder="10-digit WhatsApp number">
+            </div>
+            <span class="field-error" id="err-phone"></span>
+          </div>
+
+          <button type="button" class="primary-btn submit-btn" onclick="goToStep(2)">
+            <span class="btn-text">Continue</span>
+          </button>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="form-step" data-step="2">
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" autocomplete="email" required placeholder="e.g. rahul@gmail.com">
+            <span class="field-error" id="err-email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="segment">What describes you best?</label>
+            <select id="segment" name="segment" required>
+              <option value="" disabled selected>Select your profile</option>
+              <option value="freelancer">Freelancer / Agency Owner</option>
+              <option value="business">Small Business / D2C Founder</option>
+              <option value="creator">Content Creator</option>
+              <option value="professional">Working Professional</option>
+            </select>
+            <span class="field-error" id="err-segment"></span>
+          </div>
+
+          <!-- Commitment Checkbox (CRITICAL for show-up rate) -->
+          <div class="commitment-wrapper">
+            <input type="checkbox" id="commitment" name="commitment" required>
+            <label for="commitment">I will attend the live Zoom session on <span class="js-date-short">Sunday 4 October</span>, 11:00 AM IST for the full 120 minutes.</label>
+          </div>
+          <span class="field-error" id="err-commitment"></span>
+
+          <p class="payment-error" id="payment-error" hidden></p>
+
+          <button type="submit" class="primary-btn submit-btn" id="final-submit-btn">
+            <span class="btn-text">Confirm My Free Seat</span>
+          </button>
+          <p class="payment-note">No payment, no card. Your WhatsApp group invite appears on the next screen.</p>
+          <button type="button" class="form-back-btn" onclick="goToStep(1)">&larr; Back</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <!-- APPENDIX A — EXIT-INTENT MODAL -->
+  <div class="modal-overlay exit-modal-overlay" id="exit-modal">
+    <div class="modal-card exit-modal-card">
+      <button class="close-btn" onclick="closeExitModal()">&times;</button>
+      
+      <div class="exit-modal-content">
+        <span class="exit-alert-icon">⚠️</span>
+        <h3>Wait — before you go!</h3>
+        <p class="exit-text">
+          Two critical things worth knowing before you leave: there is <strong>no recording</strong> of this summit, and <span class="highlight-seats"><span id="seats-left-exit">107</span> of 200 seats</span> are already booked.
+        </p>
+        <p class="exit-sub">Once the remaining seats are taken, registrations close completely.</p>
+        
+        <div class="exit-actions">
+          <button class="primary-btn exit-cta" onclick="triggerExitCta()">
+            Reserve My Free Seat
+          </button>
+          <button class="exit-decline" onclick="closeExitModal()">
+            No thanks, I'll miss it
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Import -->
+
+  <!-- STICKY MOBILE CTA — mobile visitors never lose access to registration -->
+  <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+    <div class="sticky-cta-inner">
+      <div class="sticky-cta-info">
+        <span class="sticky-cta-seats"><span class="sticky-dot"></span><span id="sticky-seats">93</span><span class="sticky-seats-label">seats left</span></span>
+        <span class="sticky-cta-date"><span class="js-date-compact">Sun, 4 Oct</span> &middot; 11:00 AM</span>
+      </div>
+      <button class="sticky-cta-btn" onclick="openModal()">Reserve My Free Seat</button>
+    </div>
+  </div>
+
+
+  <!-- FLOATING: seats badge (desktop) + WhatsApp shortcut -->
+  <div class="floating-seats" id="floating-seats" aria-hidden="true">
+    <span class="fs-dot"></span>
+    <span class="fs-num" id="floating-seats-num">93</span>
+    <span class="fs-label">seats left</span>
+  </div>
+
+  <a class="whatsapp-fab" id="whatsapp-fab"
+     href="https://wa.me/919516194751?text=Hi%20Rudra!%20I%20have%20a%20question%20about%20the%20AI%20Creator%20Summit."
+     target="_blank" rel="noopener noreferrer" aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true" focusable="false">
+      <path fill="currentColor" d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.6-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.06 2.88 1.21 3.08c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.69.25-1.28.17-1.41-.07-.13-.27-.2-.57-.35z"/>
+      <path fill="currentColor" d="M20.52 3.45A11.9 11.9 0 0 0 12.05 0C5.5 0 .16 5.33.16 11.89c0 2.1.55 4.15 1.6 5.96L.06 24l6.31-1.65a11.85 11.85 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.33 11.89-11.89 0-3.18-1.24-6.16-3.43-8.46zm-8.47 18.3h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.89 9.9-9.89 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 0 1 2.89 7c0 5.45-4.44 9.88-9.9 9.88z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Read by payment.js: no checkout, its own confirmation page, and its
+    // own tab in the sheet so free seats never mix with paid ones.
+    window.SUMMIT_PAGE = {
+      paid: false,
+      durationHours: 2,
+      thankYou: "thank-you-free.html",
+      sheetTab: "Free Leads"
+    };
+  </script>
+  <script src="summit-date.js?v=5"></script>
+  <script src="lead-capture.js?v=5"></script>
+  <script src="payment.js?v=5"></script>
+  <script src="landing.js?v=5"></script>
+</body>
+</html>
