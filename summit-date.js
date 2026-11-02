@@ -25,7 +25,7 @@
  * a pin left behind can never strand the page on a date that has gone.
  * Clearing it back to "" resumes the rhythm immediately.
  */
-const SUMMIT_DATE_OVERRIDE = "2026-10-04";
+const SUMMIT_DATE_OVERRIDE = "2026-11-04";
 
 /** Start time and length, in IST. */
 const SUMMIT_HOUR_IST = 11;
