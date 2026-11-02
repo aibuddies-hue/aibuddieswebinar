@@ -67,7 +67,7 @@
   <div class="announcement-bar" id="announcement-bar">
     <div class="bar-content">
       <span class="live-indicator"><span class="dot"></span>LIVE</span>
-      <span class="bar-text"><span class="js-date-short">Sunday 4 October</span>, 11:00 AM &middot; Only <strong id="bar-seats">93</strong> seats left &middot; Free entry</span>
+      <span class="bar-text"><span class="js-date-short">Sunday 4 October</span>, <span class="js-time">7:00 PM</span> &middot; Only <strong id="bar-seats">93</strong> seats left &middot; Free entry</span>
       <button class="bar-btn" onclick="openModal()">Reserve My Seat</button>
     </div>
   </div>
@@ -153,7 +153,7 @@
       <!-- Logistics Strip -->
       <div class="logistics-strip" data-reveal>
         <div class="log-item">📅 <span class="js-date-compact-year">Sun, 4 Oct 2026</span></div>
-        <div class="log-item">🕚 11:00 AM IST</div>
+        <div class="log-item">🕖 <span class="js-time-ist">7:00 PM IST</span></div>
         <div class="log-item">⏱️ 120 Minutes</div>
         <div class="log-item"><span class="red-dot"></span> 100% Live</div>
         <div class="log-item">💻 Zoom</div>
@@ -766,7 +766,7 @@
       <div class="price-box" data-reveal>
         <h2 class="section-title" data-reveal>It's free. <span class="highlight-red">It isn't casual.</span></h2>
         <p class="price-desc">
-          There are 200 seats and there is no recording. If you don't show up on <span class="js-date-daymonth">4 October</span> at 11:00 AM, you don't get this.
+          There are 200 seats and there is no recording. If you don't show up on <span class="js-date-daymonth">4 October</span> at <span class="js-time">7:00 PM</span>, you don't get this.
         </p>
         <p class="price-desc">
           We're not asking for money. We're asking for 120 uninterrupted minutes — because you'll be building alongside, not watching. That is the harder thing to give, and it is the only thing that decides what you walk away with.
@@ -911,7 +911,7 @@
             <span class="faq-toggle-icon">+</span>
           </button>
           <div class="faq-answer">
-            <p><span class="js-date-full">Sunday 4 October, 2026</span> at 11:00 AM IST. The Zoom link reaches your WhatsApp the moment you register.</p>
+            <p><span class="js-date-full">Sunday 4 October, 2026</span> at <span class="js-time-ist">7:00 PM IST</span>. The Zoom link reaches your WhatsApp the moment you register.</p>
           </div>
         </div>
 
@@ -1020,7 +1020,7 @@
         <p class="final-desc">
           Two hours. Seven tools. Seven finished assets. And an AI that calls your phone.
         </p>
-        <p class="date-rem"><span class="js-date-short">Sunday 4 October</span> &bull; 11:00 AM &bull; Once.</p>
+        <p class="date-rem"><span class="js-date-short">Sunday 4 October</span> &bull; <span class="js-time">7:00 PM</span> &bull; Once.</p>
 
         <div class="value-stack on-dark" data-reveal>
           <p class="value-total">Total Value: <strong>&#8377;1,999</strong></p>
@@ -1119,7 +1119,7 @@
           <!-- Commitment Checkbox (CRITICAL for show-up rate) -->
           <div class="commitment-wrapper">
             <input type="checkbox" id="commitment" name="commitment" required>
-            <label for="commitment">I will attend the live Zoom session on <span class="js-date-short">Sunday 4 October</span>, 11:00 AM IST for the full 120 minutes.</label>
+            <label for="commitment">I will attend the live Zoom session on <span class="js-date-short">Sunday 4 October</span>, <span class="js-time-ist">7:00 PM IST</span> for the full 120 minutes.</label>
           </div>
           <span class="field-error" id="err-commitment"></span>
 
@@ -1168,7 +1168,7 @@
     <div class="sticky-cta-inner">
       <div class="sticky-cta-info">
         <span class="sticky-cta-seats"><span class="sticky-dot"></span><span id="sticky-seats">93</span><span class="sticky-seats-label">seats left</span></span>
-        <span class="sticky-cta-date"><span class="js-date-compact">Sun, 4 Oct</span> &middot; 11:00 AM</span>
+        <span class="sticky-cta-date"><span class="js-date-compact">Sun, 4 Oct</span> &middot; <span class="js-time">7:00 PM</span></span>
       </div>
       <button class="sticky-cta-btn" onclick="openModal()">Reserve My Free Seat</button>
     </div>
@@ -1201,7 +1201,7 @@
       sheetTab: "1st NOV"
     };
   </script>
-  <script src="summit-date.js?v=7"></script>
+  <script src="summit-date.js?v=8"></script>
   <script src="lead-capture.js?v=6"></script>
   <script src="payment.js?v=6"></script>
   <script src="landing.js?v=6"></script>
