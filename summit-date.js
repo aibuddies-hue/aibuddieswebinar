@@ -5,7 +5,7 @@
  * the visible dates, the calendar links and the date stored with every lead
  * all read the same value and can never drift apart.
  *
- * The session runs every Sunday at 7:00 PM IST. Rather than editing a date
+ * The session runs every Sunday at 11:00 AM IST. Rather than editing a date
  * every week, the page works out the coming Sunday itself: it shows the
  * current Sunday all through that day, and from midnight IST — so, the early
  * hours of Monday — it has already moved to the next one.
@@ -25,10 +25,10 @@
  * a pin left behind can never strand the page on a date that has gone.
  * Clearing it back to "" resumes the rhythm immediately.
  */
-const SUMMIT_DATE_OVERRIDE = "2026-11-04";
+const SUMMIT_DATE_OVERRIDE = "2026-11-22";
 
 /** Start time and length, in IST. */
-const SUMMIT_HOUR_IST = 19;
+const SUMMIT_HOUR_IST = 11;
 const SUMMIT_MINUTE_IST = 0;
 /**
  * How long the session runs. A page can shorten it — the free workshop is
@@ -126,7 +126,7 @@ const SUMMIT_DATE_COMPACT =
 const SUMMIT_DATE_COMPACT_YEAR =
   SUMMIT_DATE_COMPACT + " " + summitInIst.getUTCFullYear();
 
-/** "7:00 PM" — built from the hour above, never typed into the markup. */
+/** "11:00 AM" — built from the hour above, never typed into the markup. */
 function formatSummitTime(hour, minute) {
   const suffix = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 === 0 ? 12 : hour % 12;
@@ -135,7 +135,7 @@ function formatSummitTime(hour, minute) {
 
 const SUMMIT_TIME = formatSummitTime(SUMMIT_HOUR_IST, SUMMIT_MINUTE_IST);
 
-/** "7:00 PM IST" */
+/** "11:00 AM IST" */
 const SUMMIT_TIME_IST = SUMMIT_TIME + " IST";
 
 /**
